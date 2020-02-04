@@ -4,8 +4,9 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import SkillTags from './SkillTags';
 
-export default function Profile() {
+export default function MyProfile() {
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -35,6 +36,9 @@ export default function Profile() {
             control={<Checkbox color="secondary" name="saveCard" value="yes" />}
             label="Remember credit card details for next time"
           />
+        </Grid>
+        <Grid>
+          <SkillTags/>
         </Grid>
       </Grid>
     </React.Fragment>

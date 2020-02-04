@@ -6,7 +6,8 @@ import {
   Switch
 } from 'react-router-dom';
 import Layout from './components/Layout';
-import Profile from './components/Profile';
+import MyProfile from './pages/Profiles/MyProfile';
+import 'react-tagsinput/react-tagsinput.css' // If using WebPack and style-loader.
 
 function App() {
   return (
