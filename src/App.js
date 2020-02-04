@@ -6,7 +6,7 @@ import {
   Switch
 } from 'react-router-dom';
 import Layout from './components/Layout';
-import Profile from './pages/Profile';
+import MyProfile from './pages/Profiles/MyProfile';
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
         <Router>
           <Switch>
             <Route path="/profile">
-              <Profile/>
+              <MyProfile/>
             </Route>
             <Route path="/auth">
     
