@@ -6,7 +6,7 @@ import {
   Switch
 } from 'react-router-dom';
 import Layout from './components/Layout';
-import Profile from './components/Profile';
+import Profile from './pages/Profile';
 
 function App() {
   return (
