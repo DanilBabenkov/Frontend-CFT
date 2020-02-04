@@ -7,7 +7,6 @@ import {
 } from 'react-router-dom';
 import Layout from './components/Layout';
 import MyProfile from './pages/Profiles/MyProfile';
-import 'react-tagsinput/react-tagsinput.css' // If using WebPack and style-loader.
 
 function App() {
   return (
@@ -15,7 +14,7 @@ function App() {
         <Router>
           <Switch>
             <Route path="/profile">
-              <Profile/>
+              <MyProfile/>
             </Route>
             <Route path="/auth">
     
