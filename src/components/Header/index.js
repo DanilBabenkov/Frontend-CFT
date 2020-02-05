@@ -28,6 +28,8 @@ const useStyles = makeStyles(theme => ({
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
+      color: 'white',
+      textDecoration:'none'
     },
   },
   search: {
@@ -181,7 +183,7 @@ export default function Header() {
     <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar>
-          <Typography className={classes.title} variant="h6" noWrap>
+          <Typography  component={Link} to="/" className={classes.title} variant="h6" noWrap>
           Repetitto
           </Typography>
           <div className={classes.grow} />
