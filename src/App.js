@@ -9,6 +9,8 @@ import Layout from './components/Layout';
 import MyProfile from './pages/Profiles/MyProfile';
 import SignIn from './pages/login/SignIN';
 import SignUP from './pages/login/SignUP';
+import Сentral from './pages/main/Сentral';
+
 
 
 function App() {
@@ -24,6 +26,12 @@ function App() {
             </Route>
             <Route path="/sign_up">
             <SignUP/>
+            </Route>
+            <Route path="/sign_up">
+            <SignUP/>
+            </Route>
+            <Route path="/main">
+            <Сentral/>
             </Route>
             <Route path="/">
 
