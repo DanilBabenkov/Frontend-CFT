@@ -215,7 +215,7 @@ var TagInput = function (_Component) {
         value: function getInputStyledComponent() {
             var inputStyle = this.props.inputStyle;
 
-
+            
             return inputStyle ? styled(Input)(_templateObject, inputStyle) : Input;
         }
     }, {
