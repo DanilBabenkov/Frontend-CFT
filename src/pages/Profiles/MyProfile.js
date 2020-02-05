@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { useHistory } from "react-router-dom";
 import Profile from '../../components/Profile';
 
 const useStyles = makeStyles(theme => ({
@@ -45,10 +46,10 @@ const useStyles = makeStyles(theme => ({
 
 export default function MyProfile() {
   const classes = useStyles();
+  const history = useHistory();
 
   const handleNext = () => {
-    console.log(Profile.SkillTags.getTags());
-    window.location= '/';
+    history.push("/");
   };
 
   return (
