@@ -215,7 +215,7 @@ var TagInput = function (_Component) {
         value: function getInputStyledComponent() {
             var inputStyle = this.props.inputStyle;
 
-            
+
             return inputStyle ? styled(Input)(_templateObject, inputStyle) : Input;
         }
     }, {
@@ -239,6 +239,7 @@ var TagInput = function (_Component) {
                     onChange: onInputChanged,
                     placeholder: this.renderPlaceholder(),
                     type: 'text',
+                    fullWidth: true,
                     onKeyUp: this.onInputKeyUp,
                     onKeyDown: this.onInputKeyDown })
             );

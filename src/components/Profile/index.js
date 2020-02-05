@@ -98,11 +98,8 @@ class SkillTags extends React.Component {
                 tagStyle={`
                   background: #f50057;
                   font-weight: inherit;
-                    font-style: inherit;
-                    font-size: inherit;
-                `}
-                inputStyle={`
-                  width: 100%;
+                  font-style: inherit;
+                  font-size: inherit;
                 `}
               />
             </Grid>
