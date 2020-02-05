@@ -9,7 +9,7 @@ import Layout from './components/Layout';
 import MyProfile from './pages/Profiles/MyProfile';
 import SignIn from './pages/login/SignIN';
 import SignUP from './pages/login/SignUP';
-import Сentral from './pages/main/Сentral';
+import Main from './pages/Main';
 
 
 
@@ -28,7 +28,7 @@ function App() {
             <SignUP />
           </Route>
           <Route path="/">
-
+            <Main />
           </Route>
         </Switch>
       </Layout>
