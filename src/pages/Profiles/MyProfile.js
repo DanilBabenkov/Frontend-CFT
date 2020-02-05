@@ -48,7 +48,6 @@ export default function MyProfile() {
 
   const handleNext = () => {
     console.log(Profile.SkillTags.getTags());
-    return;
     window.location= '/';
   };
 
