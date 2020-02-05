@@ -4,14 +4,12 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import Avatar from '@material-ui/core/Avatar';
 import {TagInput} from '../TagInput';
 
+
 function MainInfo() {
-  console.log(TagInput)
   return (
     <React.Fragment>
-      <Avatar>АЛ</Avatar>
       <Typography variant="h6" gutterBottom>
         Общая информация
       </Typography>
@@ -52,6 +50,7 @@ function MainInfo() {
 }
 
 class SkillTags extends React.Component {
+  
     constructor(props) {
         super(props);
         this.state = {checked: false , tags: []}
@@ -62,43 +61,52 @@ class SkillTags extends React.Component {
     this.setState({ checked: event.target.checked })
 
     onTagsChanged(tags) {
-        this.setState({tags})
+      this.setState({tags})
     }
 
     render() {
-        return (
+      return (
         <Grid container spacing={3}>
           <Grid item xs={12}>
               <FormControlLabel
-                control={<Checkbox color="secondary" checked={this.state.checked}
-              onChange={this.handleCheckboxChange} name="isTeacher" value="yes" />}
+                control={
+                  <Checkbox
+                    color="secondary" 
+                    checked={this.state.checked}
+                    onChange={this.handleCheckboxChange} 
+                    name="isTeacher" 
+                    value="yes"
+                  />
+                }
                 label="Я преподаватель"
               />
           </Grid>
-          {this.state.checked ? <Grid  item xs={12}>
-            <TagInput
-              tags={this.state.tags} 
-              onTagsChanged={this.onTagsChanged}
-              inputStyle={`
-                background: white;
-                &::-webkit-input-placeholder {
+          {this.state.checked ?
+            <Grid  item xs={12}>
+              <TextField
+                id="price"
+                name="price"
+                label="Стоимость занятия"
+                fullWidth
+              />
+              <TagInput
+                tags={this.state.tags} 
+                onTagsChanged={this.onTagsChanged}
+                wrapperStyle={`
+                  margin-top: 16px
+                `}
+                tagStyle={`
+                  background: #f50057;
                   font-weight: inherit;
-                  font-style: inherit;
-                  color:  inherit;
-                  font-size: inherit;
-                }
-              `}
-              tagStyle={`
-                background: #f50057;
-                font-weight: inherit;
-                  font-style: inherit;
-                  font-size: inherit;
-              `}
-            />
-          </Grid> : ''}
-          
+                    font-style: inherit;
+                    font-size: inherit;
+                `}
+              />
+            </Grid>
+          : ''
+          }
         </Grid>
-        )
+      )
     }
 }
 
