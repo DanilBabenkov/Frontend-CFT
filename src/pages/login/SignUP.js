@@ -5,7 +5,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
+import {Link} from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -113,8 +113,9 @@ export default function SignUp() {
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link href="/sign_in" variant="body2">
-                Уже есть аккаунт? Войти
+              <span> Уже есть аккаунт? </span>
+              <Link to="/sign_in" variant="body2">
+                Войти
               </Link>
             </Grid>
           </Grid>
