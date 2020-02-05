@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,8 +12,9 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import axios from 'axios';
 
-
+import loginMock from '../../mock/login.json';
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -38,6 +39,30 @@ const useStyles = makeStyles(theme => ({
 export default function SignIn() {
   const classes = useStyles();
 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log({email, password});
+
+    axios.post('/login', {
+      email,
+      password
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      let result = loginMock.post.success;
+      if(result.successful){
+        console.log("Окей")
+      }else{
+        console.log("Trouble")
+      }
+    });
+  };
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -48,7 +73,7 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Вход
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -59,6 +84,7 @@ export default function SignIn() {
             name="email"
             autoComplete="email"
             autoFocus
+            onChange={(e) => {setEmail(e.target.value)}}
           />
           <TextField
             variant="outlined"
@@ -70,6 +96,7 @@ export default function SignIn() {
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={(e) => {setPassword(e.target.value)}}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
@@ -81,8 +108,8 @@ export default function SignIn() {
             variant="contained"
             color="primary"
             className={classes.submit}
-            component={Link}
-            to="/profile"
+           /* component={Link}
+            to="/profile"*/
           >
             Войти
           </Button>

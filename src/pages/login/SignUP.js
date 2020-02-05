@@ -1,17 +1,21 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import axios from 'axios';
+
+
+import userMock from '../../mock/user.json';
 
 
 const useStyles = makeStyles(theme => ({
@@ -36,6 +40,36 @@ const useStyles = makeStyles(theme => ({
 
 export default function SignUp() {
   const classes = useStyles();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isTeacher, setIsTeacher] = useState(false);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log({firstName, lastName, email, password, isTeacher});
+
+    axios.post('/user', {
+      email,
+      password,
+      firstName,
+      lastName,
+      isTeacher
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      let result = userMock.post.success;
+      if(result.successful){
+        console.log("Окей");
+        
+      }else{
+        console.log("Trouble")
+      }
+    });
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -47,7 +81,7 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Регистрация
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -59,6 +93,7 @@ export default function SignUp() {
                 id="firstName"
                 label="Имя"
                 autoFocus
+                onChange={(e) => {setFirstName(e.target.value)}}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -70,6 +105,7 @@ export default function SignUp() {
                 label="Фамилия"
                 name="lastName"
                 autoComplete="lname"
+                onChange={(e) => {setLastName(e.target.value)}}
               />
             </Grid>
             <Grid item xs={12}>
@@ -81,6 +117,7 @@ export default function SignUp() {
                 label="Email"
                 name="email"
                 autoComplete="email"
+                onChange={(e) => {setEmail(e.target.value)}}
               />
             </Grid>
             <Grid item xs={12}>
@@ -93,12 +130,14 @@ export default function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                onChange={(e) => {setPassword(e.target.value)}}
               />
             </Grid>
             <Grid item xs={12}>
               <FormControlLabel
                 control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="Я хочу получать спам на почту"
+                label="Хочу преподавать"
+                onChange={(e) => {setIsTeacher(e.target.value)}}
               />
             </Grid>
           </Grid>
