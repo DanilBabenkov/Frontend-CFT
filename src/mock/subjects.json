@@ -1,0 +1,31 @@
+{
+    "post": {
+        "success": {
+            "successful": true
+        },
+        "error": {
+            "successful": false
+        }
+    },
+    "get": {
+        "success": [
+            {
+                "id": 1,
+                "name":"Математика"
+            }, 
+            {
+                "id": 2,
+                "name":"Начертательная геометрия"
+            },
+            {
+                "id": 3,
+                "name":"Экономика"
+            },
+            {
+                "id": 4,
+                "name":"Физика"
+            }
+        ],
+        "error": []
+    }
+}
