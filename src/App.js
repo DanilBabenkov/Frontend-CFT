@@ -13,24 +13,25 @@ import SignUP from './pages/login/SignUP';
 
 function App() {
   return (
+    <Router>
       <Layout>
-        <Router>
-          <Switch>
-            <Route path="/profile">
-              <MyProfile/>
-            </Route>
-            <Route path="/sign_in">
-            <SignIn/>
-            </Route>
-            <Route path="/sign_up">
-            <SignUP/>
-            </Route>
-            <Route path="/">
+        <Switch>
+          <Route path="/profile">
+            <MyProfile />
+          </Route>
+          <Route path="/sign_in">
+            <SignIn />
+          </Route>
+          <Route path="/sign_up">
+            <SignUP />
+          </Route>
+          <Route path="/">
 
-            </Route>
-          </Switch>
-        </Router>
+          </Route>
+        </Switch>
       </Layout>
+
+    </Router>
   );
 }
 

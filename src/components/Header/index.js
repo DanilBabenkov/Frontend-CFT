@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import MenuItem from '@material-ui/core/MenuItem';
-import Link from '@material-ui/core/Link';
+import {BrowserRouter as Router, Link} from 'react-router-dom';
 import Menu from '@material-ui/core/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MoreIcon from '@material-ui/icons/MoreVert';
@@ -109,9 +109,9 @@ export default function Header() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem component={Link} href='/profile'>Мой профиль</MenuItem>
+      <MenuItem component={Link} to='/profile'>Мой профиль</MenuItem>
       <MenuItem component={Link} href='/sign_in'>Вход</MenuItem>
-      <MenuItem component={Link} href='/sign_up'>Регистрация</MenuItem>
+      <MenuItem component={Router.Link} href='/sign_up'>Регистрация</MenuItem>
     </Menu>
   );
 
