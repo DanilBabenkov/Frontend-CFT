@@ -181,9 +181,10 @@ export default function Header() {
     <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar>
-          <Typography className={classes.title} variant="h6" noWrap>
+          <Typography className={classes.title} variant="h6" style={{textDecoration:'none'}} component={Link} to="/main" className={classes.title}  noWrap>
           Repetitto
           </Typography>
+          
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton
