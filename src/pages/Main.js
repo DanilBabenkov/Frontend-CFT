@@ -2,6 +2,8 @@ import React from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
+import {Link} from 'react-router-dom';
+
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
@@ -117,6 +119,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
+
 export default function MiniDrawer() {
   const classes = useStyles();
   const theme = useTheme();
@@ -147,7 +150,7 @@ export default function MiniDrawer() {
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small" color="primary">
+                    <Button component={Link} to="/profile" size="small" color="primary">
                     Смотреть
                     </Button>
                     

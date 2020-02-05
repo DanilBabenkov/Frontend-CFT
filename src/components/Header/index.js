@@ -186,6 +186,7 @@ export default function Header() {
           <Typography  component={Link} to="/" className={classes.title} variant="h6" noWrap>
           Repetitto
           </Typography>
+          
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton
