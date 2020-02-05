@@ -1,0 +1,32 @@
+{
+    "post": {
+        "success": {
+            "successful": true
+        },
+        "error": {
+            "successful": false
+        }
+    },
+    "get": {
+        "success": [
+            { 
+                "id": 1,
+                "firstName": "Иван",
+                "lastName": "Иванов",
+                "paronym": "Иванович",
+                "price": 1000,
+                "avgMark": 3.4,
+                "photo" : null
+            },
+            { 
+                "id": 2,
+                "firstName": "Александр",
+                "lastName": "Логинов",
+                "price": 1000,
+                "avgMark": null,
+                "photo" : null
+            }
+        ],
+        "error": []
+    }
+}
