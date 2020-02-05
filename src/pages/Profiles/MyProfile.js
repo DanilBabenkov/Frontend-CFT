@@ -6,8 +6,15 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { useHistory } from "react-router-dom";
 import Profile from '../../components/Profile';
+import Avatar from '@material-ui/core/Avatar';
 
 const useStyles = makeStyles(theme => ({
+  avatar: {
+    width: '3.0em',
+    height: '3.0em',
+    float: 'left',
+    marginRight: theme.spacing(4)
+  },
   appBar: {
     position: 'relative',
   },
@@ -20,6 +27,11 @@ const useStyles = makeStyles(theme => ({
       marginLeft: 'auto',
       marginRight: 'auto',
     },
+  },
+  container: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   paper: {
     marginTop: theme.spacing(3),
@@ -57,9 +69,13 @@ export default function MyProfile() {
       <CssBaseline />
       <main className={classes.layout}>
         <Paper className={classes.paper}>
-          <Typography component="h1" variant="h4" align="center">
-            Александр Логинов
-          </Typography>
+          <div className={classes.container}>
+            <Avatar className={classes.avatar}>АЛ</Avatar>
+            <Typography component="h1" variant="h4" align="center">
+              Александр Логинов
+            </Typography>
+          </div>
+      
           <React.Fragment>
             <React.Fragment>
                 <Profile.MainInfo />
