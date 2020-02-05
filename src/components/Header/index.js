@@ -5,9 +5,15 @@ import Typography from '@material-ui/core/Typography';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import MenuItem from '@material-ui/core/MenuItem';
-import {BrowserRouter as Router, Link} from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route, 
+  Switch, 
+  Link
+} from 'react-router-dom';
 import Menu from '@material-ui/core/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
+import ArrowForward from '@material-ui/icons/ArrowForward';
 import MoreIcon from '@material-ui/icons/MoreVert';
 
 
@@ -99,6 +105,21 @@ export default function Header() {
   };
 
   const menuId = 'primary-search-account-menu';
+  
+  const UserMenu = (
+    <div>
+      <MenuItem component={Link} to='/profile'>Мой профиль</MenuItem>
+      <MenuItem component={Link} to='/'>Выйти</MenuItem>
+    </div>
+  ); 
+
+  const GuestMenu = (
+    <div>
+      <MenuItem component={Link} to='/sign_in'>Вход</MenuItem>
+      <MenuItem component={Link} to='/sign_up'>Регистрация</MenuItem>
+    </div>
+  ); 
+
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -109,9 +130,14 @@ export default function Header() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem component={Link} to='/profile'>Мой профиль</MenuItem>
-      <MenuItem component={Link} href='/sign_in'>Вход</MenuItem>
-      <MenuItem component={Router.Link} href='/sign_up'>Регистрация</MenuItem>
+      <Switch>
+        <Route path="/profile">
+          {UserMenu}
+        </Route>
+        <Route>
+          {GuestMenu}
+        </Route>
+      </Switch>
     </Menu>
   );
 
@@ -126,7 +152,7 @@ export default function Header() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem onClick={handleProfileMenuOpen}>
+      <MenuItem component={Link} to="/profile">
         <IconButton
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
@@ -135,7 +161,18 @@ export default function Header() {
         >
           <AccountCircle />
         </IconButton>
-        <p>Profile</p>
+        <p>Профиль</p>
+      </MenuItem>
+      <MenuItem component={Link} to="/">
+        <IconButton
+          aria-label="account of current user"
+          aria-controls="primary-search-account-menu"
+          aria-haspopup="true"
+          color="inherit"
+        >
+          <ArrowForward />
+        </IconButton>
+        <p>Выйти</p>
       </MenuItem>
     </Menu>
   );
