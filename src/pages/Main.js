@@ -105,7 +105,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function MiniDrawer() {
   const classes = useStyles();
-  const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9,10];
+  const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9,10,11];
   return (
     <div className={classes.root}>
       <main>
@@ -132,7 +132,7 @@ export default function MiniDrawer() {
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button component={Link} to="/profile" size="small" color="primary">
+                    <Button component={Link} to="/other_profile" size="small" color="primary">
                     Смотреть
                     </Button>
                     
