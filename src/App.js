@@ -10,6 +10,7 @@ import MyProfile from './pages/Profiles/MyProfile';
 import SignIn from './pages/login/SignIN';
 import SignUP from './pages/login/SignUP';
 import Main from './pages/Main';
+import Blog from './pages/Profiles/forOther/Blog';
 
 
 
@@ -27,9 +28,13 @@ function App() {
           <Route path="/sign_up">
             <SignUP />
           </Route>
+          <Route path="/otherProfile">
+            <Blog />
+          </Route>
           <Route path="/">
             <Main />
           </Route>
+          
         </Switch>
       </Layout>
 
