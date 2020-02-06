@@ -121,6 +121,9 @@ export default function Header() {
     </div>
   ); 
 
+  let token = localStorage.getItem('token');
+  let user_id = localStorage.getItem('user_id');
+  let authorised = Boolean(token && token.length && user_id && user_id.length);
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -131,14 +134,7 @@ export default function Header() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <Switch>
-        <Route path="/profile">
-          {UserMenu}
-        </Route>
-        <Route>
-          {GuestMenu}
-        </Route>
-      </Switch>
+      {authorised? UserMenu : GuestMenu}
     </Menu>
   );
 
