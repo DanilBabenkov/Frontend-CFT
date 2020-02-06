@@ -1,0 +1,10 @@
+{
+    "success":
+    {
+        "successful" : true,
+        "token" : "u123kf"
+    },
+    "error": {
+        "successful" : false
+    }
+}

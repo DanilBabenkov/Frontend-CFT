@@ -1,3 +1,4 @@
+
 import React, {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -46,17 +47,23 @@ export default function SignIn() {
     event.preventDefault();
     console.log({email, password});
 
+    
     axios.post('/login', {
       email,
       password
     })
     .then(function (response) {
       console.log(response);
+      return response;
     })
     .catch(function (error) {
-      let result = loginMock.post.success;
-      if(result.successful){
-        console.log("Окей")
+      return loginMock.post.success;
+    })
+    .then(result => {
+      console.log(result);
+      if(result.successful === true && result.token && result.user && result.user.id){
+        localStorage.setItem('token', result.token);
+        localStorage.setItem('user_id', result.user.id)
       }else{
         console.log("Trouble")
       }

@@ -9,6 +9,7 @@ import Layout from './components/Layout';
 import MyProfile from './pages/Profiles/MyProfile';
 import SignIn from './pages/login/SignIN';
 import SignUP from './pages/login/SignUP';
+import SignOut from './pages/login/SignOut';
 import Main from './pages/Main';
 
 
@@ -26,6 +27,9 @@ function App() {
           </Route>
           <Route path="/sign_up">
             <SignUP />
+          </Route>
+          <Route path="/sign_out">
+            <SignOut />
           </Route>
           <Route path="/">
             <Main />

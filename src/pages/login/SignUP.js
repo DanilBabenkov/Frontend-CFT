@@ -14,8 +14,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import axios from 'axios';
 
-
-import userMock from '../../mock/user.json';
+import signUpMock from '../../mock/sign_up.json';
 
 
 const useStyles = makeStyles(theme => ({
@@ -58,13 +57,18 @@ export default function SignUp() {
       isTeacher
     })
     .then(function (response) {
+      console.log('Response is:\n');
       console.log(response);
+      return response;
     })
     .catch(function (error) {
-      let result = userMock.post.success;
+      return signUpMock.post.success;
+    })
+    .then(function(result){
       if(result.successful){
         console.log("Окей");
-        
+        localStorage.setItem('token', result.token);
+        localStorage.setItem('user_id', result.user.id)
       }else{
         console.log("Trouble")
       }

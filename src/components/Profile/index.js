@@ -7,9 +7,9 @@ import Checkbox from '@material-ui/core/Checkbox';
 import {TagInput} from '../TagInput';
 
 
-function MainInfo() {
+function MainInfo(props) {
   return (
-    <React.Fragment>
+    <>
       <Typography variant="h6" gutterBottom>
         Общая информация
       </Typography>
@@ -22,6 +22,7 @@ function MainInfo() {
             label="Имя"
             fullWidth
             autoComplete="fname"
+            value={props.firstName}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -30,6 +31,7 @@ function MainInfo() {
             id="lastName"
             name="lastName"
             label="Фамилия"
+            value={props.lastName}
             fullWidth
             autoComplete="lname"
           />
@@ -41,11 +43,12 @@ function MainInfo() {
             name="about"
             label="О себе"
             fullWidth
+            value={props.about}
             multiline
           />
         </Grid>
       </Grid>
-    </React.Fragment>
+    </>
   );
 }
 
@@ -72,7 +75,7 @@ class SkillTags extends React.Component {
                 control={
                   <Checkbox
                     color="secondary" 
-                    checked={this.state.checked}
+                    checked={this.props.isTeacher}
                     onChange={this.handleCheckboxChange} 
                     name="isTeacher" 
                     value="yes"
@@ -83,12 +86,6 @@ class SkillTags extends React.Component {
           </Grid>
           {this.state.checked ?
             <Grid  item xs={12}>
-              <TextField
-                id="price"
-                name="price"
-                label="Стоимость занятия"
-                fullWidth
-              />
               <TagInput
                 tags={this.state.tags} 
                 onTagsChanged={this.onTagsChanged}
@@ -101,6 +98,12 @@ class SkillTags extends React.Component {
                   font-style: inherit;
                   font-size: inherit;
                 `}
+              />
+              <TextField
+                id="price"
+                name="price"
+                label="Стоимость занятия"
+                fullWidth
               />
             </Grid>
           : ''

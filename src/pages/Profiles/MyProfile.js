@@ -1,12 +1,15 @@
-import React from 'react';
+import React, {useState}  from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { useHistory } from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
 import Profile from '../../components/Profile';
 import Avatar from '@material-ui/core/Avatar';
+import axios from 'axios';
+
+import userMock from '../../mock/user.json';
 
 const useStyles = makeStyles(theme => ({
   avatar: {
@@ -60,10 +63,41 @@ const useStyles = makeStyles(theme => ({
 export default function MyProfile() {
   const classes = useStyles();
   const history = useHistory();
+  const localInfo = {
+    token: localStorage.getItem('token'),
+    user_id: localStorage.getItem('user_id')
+  }
+
+  const [user, setUser] = useState({
+    "firstName": "Александр",
+    "lastName": "Логинов",
+  })
+
+  if(!localInfo.token || !localInfo.user_id){
+    return <Redirect to="/"></Redirect>
+  }
 
   const handleNext = () => {
     history.push("/");
   };
+
+  axios.get('/user/', {
+    token: localInfo.token
+  })
+  .then(response => {
+    console.log(response)
+    return response
+  })
+  .catch(error => {
+    return userMock.success
+  })
+  .then(result => {
+    if(result && 'id' in result){
+      setUser(result)
+    }else{
+      console.log('Troubles')
+    }
+  });
 
   return (
     <React.Fragment>
@@ -73,7 +107,7 @@ export default function MyProfile() {
           <div className={classes.container}>
             <Avatar className={classes.avatar}>АЛ</Avatar>
             <Typography component="h1" variant="h4" align="center">
-              Александр Логинов
+              {user.firstName} {user.lastName}
             </Typography>
           </div>
       
