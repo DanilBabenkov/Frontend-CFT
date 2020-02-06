@@ -22,7 +22,7 @@ function MainInfo(props) {
             label="Имя"
             fullWidth
             autoComplete="fname"
-            value={props.firstName}
+            value={props.user.firstName}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -31,7 +31,7 @@ function MainInfo(props) {
             id="lastName"
             name="lastName"
             label="Фамилия"
-            value={props.lastName}
+            value={props.user.lastName}
             fullWidth
             autoComplete="lname"
           />
@@ -43,7 +43,7 @@ function MainInfo(props) {
             name="about"
             label="О себе"
             fullWidth
-            value={props.about}
+            value={props.user.about}
             multiline
           />
         </Grid>
@@ -75,7 +75,7 @@ class SkillTags extends React.Component {
                 control={
                   <Checkbox
                     color="secondary" 
-                    checked={this.props.isTeacher}
+                    checked={this.props.user.isTeacher}
                     onChange={this.handleCheckboxChange} 
                     name="isTeacher" 
                     value="yes"
@@ -84,7 +84,7 @@ class SkillTags extends React.Component {
                 label="Я преподаватель"
               />
           </Grid>
-          {this.state.checked ?
+          {this.props.user.isTeacher ?
             <Grid  item xs={12}>
               <TagInput
                 tags={this.state.tags} 
@@ -104,6 +104,7 @@ class SkillTags extends React.Component {
                 name="price"
                 label="Стоимость занятия"
                 fullWidth
+                value={this.props.user.price}
               />
             </Grid>
           : ''

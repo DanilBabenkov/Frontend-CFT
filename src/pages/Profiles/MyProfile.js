@@ -69,8 +69,10 @@ export default function MyProfile() {
   }
 
   const [user, setUser] = useState({
-    "firstName": "Александр",
-    "lastName": "Логинов",
+    "firstName": "",
+    "lastName": "",
+    "about": "",
+    "isTeacher": false
   })
 
   if(!localInfo.token || !localInfo.user_id){
@@ -89,7 +91,7 @@ export default function MyProfile() {
     return response
   })
   .catch(error => {
-    return userMock.success
+    return userMock.get.success
   })
   .then(result => {
     if(result && 'id' in result){
@@ -105,7 +107,7 @@ export default function MyProfile() {
       <main className={classes.layout}>
         <Paper className={classes.paper}>
           <div className={classes.container}>
-            <Avatar className={classes.avatar}>АЛ</Avatar>
+            <Avatar className={classes.avatar}>{user.firstName[0]}{user.lastName[0]}</Avatar>
             <Typography component="h1" variant="h4" align="center">
               {user.firstName} {user.lastName}
             </Typography>
@@ -113,8 +115,8 @@ export default function MyProfile() {
       
           <React.Fragment>
             <React.Fragment>
-                <Profile.MainInfo />
-                <Profile.SkillTags />
+                <Profile.MainInfo user={user}/>
+                <Profile.SkillTags user={user}/>
                 <div className={classes.buttons}>
                   <Button
                     variant="contained"
