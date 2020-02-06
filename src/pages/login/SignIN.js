@@ -1,5 +1,6 @@
 
 import React, {useState} from 'react';
+import {useHistory} from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -39,6 +40,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function SignIn() {
   const classes = useStyles();
+  const history = useHistory();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -63,9 +65,10 @@ export default function SignIn() {
       console.log(result);
       if(result.successful === true && result.token && result.user && result.user.id){
         localStorage.setItem('token', result.token);
-        localStorage.setItem('user_id', result.user.id)
+        localStorage.setItem('user_id', result.user.id);
+        history.push('/');
       }else{
-        console.log("Trouble")
+        console.log("Trouble");
       }
     });
   };

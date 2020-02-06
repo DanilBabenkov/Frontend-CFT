@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import axios from 'axios';
+import {useHistory} from 'react-router-dom';
 
 import signUpMock from '../../mock/sign_up.json';
 
@@ -44,6 +45,7 @@ export default function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isTeacher, setIsTeacher] = useState(false);
+  const history = useHistory();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -68,7 +70,8 @@ export default function SignUp() {
       if(result.successful){
         console.log("Окей");
         localStorage.setItem('token', result.token);
-        localStorage.setItem('user_id', result.user.id)
+        localStorage.setItem('user_id', result.user.id);
+        history.push('/profile');
       }else{
         console.log("Trouble")
       }

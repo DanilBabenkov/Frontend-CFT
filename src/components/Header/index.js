@@ -110,7 +110,7 @@ export default function Header() {
   const UserMenu = (
     <div>
       <MenuItem component={Link} to='/profile'>Мой профиль</MenuItem>
-      <MenuItem component={Link} to='/'>Выйти</MenuItem>
+      <MenuItem component={Link} to='/sign_out'>Выйти</MenuItem>
     </div>
   ); 
 
@@ -164,7 +164,7 @@ export default function Header() {
         </IconButton>
         <p>Профиль</p>
       </MenuItem>
-      <MenuItem component={Link} to="/">
+      <MenuItem component={Link} to="/sign_out">
         <IconButton
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
