@@ -233,6 +233,7 @@ var TagInput = function (_Component) {
                 { onClick: this.focusInput },
                 this.renderTags(),
                 React.createElement(InputComponent, {
+                    autoFocus:true,
                     ref: function ref(el) {
                         return _this6.input = el;
                     },
@@ -266,7 +267,7 @@ TagInput.propTypes = {
 TagInput.defaultProps = {
     placeholder: 'Введите дисциплину',
     addTagOnEnterKeyPressed: true,
-    hideInputPlaceholderTextIfTagsPresent: true
+    hideInputPlaceholderTextIfTagsPresent: false
 };
 
 export default TagInput;

@@ -13,6 +13,7 @@ const useStyles = makeStyles(theme => ({
     width: '3.0em',
     height: '3.0em',
     float: 'left',
+    backgroundColor: '#f50057',
     marginRight: theme.spacing(4)
   },
   appBar: {
