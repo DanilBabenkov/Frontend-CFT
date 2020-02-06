@@ -13,6 +13,8 @@ import Button from '@material-ui/core/Button';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import CheckboxesTags from '../components/Filters/index'
+import PersonsList from '../components/ExampleGet/PersonalList'
+import PersonsInput from '../components/ExamplePost/PersonalInput'
 const drawerWidth = 240;
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
@@ -117,12 +119,13 @@ export default function MiniDrawer() {
     <div className={classes.root}>
       <main>
         {/* Hero unit */}
-        
+        {/* <PersonsInput/>
+        <PersonsList/> */}
         
         <Container className={classes.cardGrid} maxWidth="md">
         <Grid container spacing={1}>
           {filters.map(filter => (
-            <Grid item xs={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <CheckboxesTags filter={filter}/>
             </Grid>
           ))}
