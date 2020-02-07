@@ -14,12 +14,15 @@ export default function StarRating(props) {
   const handleChange = (e, newMark) => {
     setMark(newMark);
 
-    axios.post('/user/' + profile.id + '/review/', {
+    const review = {
       "mark": mark,
       "comment": "Оценка от пользователя "+user.lastName+" "+user.firstName,
       "reviewer_id": user.id
-    });
-    
+    };
+
+    console.log(review);
+
+    axios.post('/user/' + profile.id + '/review/', review);
   }
 
   const auth = (token && token.length);
@@ -32,7 +35,8 @@ export default function StarRating(props) {
         <Typography variant="h6" component="legend">{ canChange? 'Рейтинг преподавателя' : 'Ваш Рейтинг'}</Typography>
         <Rating 
           name="read-only"
-          value={mark} 
+          
+          value={profile.avgMark}  
           readOnly={!canChange}
           onChange={(canChange)? handleChange : ()=>{}}/>
       </Box>
