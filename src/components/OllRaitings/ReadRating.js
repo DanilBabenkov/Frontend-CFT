@@ -10,7 +10,7 @@ export default function ReadRating() {
     <div>
      
       <Box component="fieldset" borderColor="transparent">
-        <Typography variant="h6" component="legend">Рейтинг преподавателя</Typography>
+        <Typography variant="h6" component="legend">Ваш Рейтинг</Typography>
         <Rating name="read-only" value={value} readOnly />
       </Box>
       

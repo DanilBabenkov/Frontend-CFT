@@ -30,10 +30,10 @@ export default function Sidebar(props) {
         <Typography>{description}</Typography>
         
         <ChangeRating/>
-        
+
       </Paper>
       <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
-        Archives
+        Связь
       </Typography>
       {archives.map(archive => (
         <Link display="block" variant="body1" href={archive.url} key={archive.title}>

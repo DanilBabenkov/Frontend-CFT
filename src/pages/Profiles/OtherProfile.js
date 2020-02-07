@@ -15,7 +15,7 @@ import SimpleExpansionPanel from '../../components/forOther/Panels'
 const mainFeaturedPost = {
   title: 'Кирилл Зырянов',
   description:
-    "Программист",
+    "тут subjects",
   image: 'https://source.unsplash.com/random',
   imgText: 'main image description',
 };
@@ -41,19 +41,14 @@ const featuredPosts = [
 
 
 const sidebar = {
-  title: 'About',
+  title: 'Обо мне',
   description:
-    'Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.',
+    'Тут данные из эбаут',
   archives: [
-    { title: 'March 2020', url: '#' },
-    { title: 'February 2020', url: '#' },
-    { title: 'January 2020', url: '#' },
-    { title: 'November 1999', url: '#' },
-    { title: 'October 1999', url: '#' },
-    
+    { title: 'сюда емаил' },
+  
   ],
   social: [
-    { name: 'GitHub', icon: GitHubIcon },
     { name: 'Twitter', icon: TwitterIcon },
     { name: 'Facebook', icon: FacebookIcon },
   ],
