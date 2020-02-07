@@ -121,7 +121,7 @@ export default function MiniDrawer() {
         <main>
           {/* Hero unit */}
           {/* <PersonsInput/> */}
-          
+
           <Container className={classes.cardGrid} maxWidth="md">
           <Grid container spacing={1}>
             {filters.map(filter => (
@@ -130,7 +130,7 @@ export default function MiniDrawer() {
               </Grid>
             ))}
             </Grid>
-            
+
             {/* End hero unit */}
             <Grid container spacing={4}>
               <PersonsList/>
@@ -140,11 +140,3 @@ export default function MiniDrawer() {
       </div>
     );
 }
-
-const top100Films = [
-  { title: 'onlyTeacher', year: 1994 },
-  { title: 'faculty', year: 1972 },
-  { title: 'course: Part II', year: 1974 },
-  { title: 'subject', year: 2008 },
-  { title: 'degree', year: 2008 },
-];
