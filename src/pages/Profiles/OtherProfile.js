@@ -9,9 +9,6 @@ import FeaturedPost from '../../components/forOther/FeaturedPost';
 import Sidebar from '../../components/forOther/Sidebar';
 import SimpleExpansionPanel from '../../components/forOther/Panels'
 
-
-
-
 const mainFeaturedPost = {
   title: 'Кирилл Зырянов',
   description:
@@ -59,7 +56,7 @@ const sidebar = {
   ],
 };
 
-export default function OtherProfile() {
+export default function OtherProfile(props) {
   return (
     <React.Fragment>
       <Container maxWidth="lg">

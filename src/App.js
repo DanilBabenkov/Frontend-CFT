@@ -14,8 +14,6 @@ import Main from './pages/Main';
 import Start from './pages/Start';
 import OtherProfile from './pages/Profiles/OtherProfile';
 
-
-
 function App() {
   let token = localStorage.getItem('token');
   let user_id = localStorage.getItem('user_id');
@@ -28,9 +26,7 @@ function App() {
           <Route path="/profile">
             <MyProfile />
           </Route>
-          <Route path="/other_profile">
-            <OtherProfile />
-          </Route>
+          <Route path="/user/:id" component={OtherProfile} />
           <Route path="/sign_in">
             <SignIn />
           </Route>
@@ -46,7 +42,6 @@ function App() {
 
         </Switch>
       </Layout>
-
     </Router>
   );
 }
