@@ -69,8 +69,8 @@ export default function SignUp() {
         let result = response.data;
         console.log('Login response is:', result);
         
-        if(result.successful === true && result.uuid && result.user && result.user.id){
-          localStorage.setItem('token', result.uuid);
+        if(result.successful === true && result.token && result.user && result.user.id){
+          localStorage.setItem('token', result.token);
           localStorage.setItem('user_id', result.user.id);
           history.push('/');
         }else{

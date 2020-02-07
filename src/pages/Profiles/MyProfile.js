@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { useHistory, Redirect } from "react-router-dom";
+import { useHistory, Redirect, Link } from "react-router-dom";
 import Profile from '../../components/Profile';
 import Avatar from '@material-ui/core/Avatar';
 import axios from 'axios';
@@ -121,13 +121,13 @@ export default function MyProfile() {
     let user_id = localStorage.getItem('user_id');
     axios.put('/user/' + user_id, user)
       .then(response => {
-        
+        console.log(response)
       })
       .catch(error => {
         console.log(error)
       })
       .then(result => {
-        history.push('/')
+        //history.push('/')
       });
   };
 
@@ -154,6 +154,15 @@ export default function MyProfile() {
                   className={classes.button}
                 >
                   {'Сохранить'}
+                </Button>
+                <Button
+                  variant="contained"
+                  color="error"
+                  className={classes.button}
+                  component={Link}
+                  to='/'
+                >
+                  {'Отменить'}
                 </Button>
               </div>
             </>
