@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function Sidebar(props) {
   const classes = useStyles();
-  const { description, social, title, profile, user } = props;
+  const { description, social, title, profile, user, handleOpen } = props;
 
   return (
     <Grid item xs={12} >
@@ -31,13 +31,13 @@ export default function Sidebar(props) {
         <Typography>{description}</Typography>
 
         <Rating profile={profile} user={user}/>
-        {profile.id === user.id? <Button
+        {(!(profile && profile.id && profile.id.length) || profile.id < 0 || user.id === profile.id)? <Button
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={alert('asd')}
+            onClick={handleOpen}
           >
             Изменить данные профиля
           </Button> : ''}

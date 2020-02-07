@@ -4,20 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import Link from '@material-ui/core/Link';
-import Modal from '@material-ui/core/Modal';
-import SimpleModal from '@material-ui/core/Modal';
-
-function getModalStyle() {
-  const top = 50;
-  const left = 50;
-
-  return {
-    top: `${top}%`,
-    left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`,
-  };
-}
 
 const useStyles = makeStyles(theme => ({
   mainFeaturedPost: {
@@ -60,55 +46,26 @@ export default function MainFeaturedPost(props) {
   const classes = useStyles();
   const { post } = props;
 
-  const [modalStyle] = React.useState(getModalStyle);
-  const [open, setOpen] = React.useState(false);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
   return (
     <>
-    <Paper className={classes.mainFeaturedPost} style={{ backgroundImage: `url(${post.image})` }}>
-      {/* Increase the priority of the hero background image */}
-      {<img style={{ display: 'none' }} src={post.image} alt={post.imageText} />}
-      <div className={classes.overlay} />
-      <Grid container>
-        <Grid item md={6}>
-          <div className={classes.mainFeaturedPostContent}>
-            <Typography component="h1" variant="h3" color="inherit" gutterBottom>
-              {post.title}
-            </Typography>
-            <Typography variant="h5" color="inherit" paragraph>
-              {post.description}
-            </Typography>
-            <Link variant="subtitle1" href="#" onClick={handleOpen}>
-              {post.linkText}
-            </Link>
-          </div>
+      <Paper className={classes.mainFeaturedPost} style={{ backgroundImage: `url(${post.image})` }}>
+        {/* Increase the priority of the hero background image */}
+        {<img style={{ display: 'none' }} src={post.image} alt={post.imageText} />}
+        <div className={classes.overlay} />
+        <Grid container>
+          <Grid item md={6}>
+            <div className={classes.mainFeaturedPostContent}>
+              <Typography component="h1" variant="h3" color="inherit" gutterBottom>
+                {post.title}
+              </Typography>
+              <Typography variant="h5" color="inherit" paragraph>
+                {post.description}
+              </Typography>
+            </div>
+          </Grid>
         </Grid>
-      </Grid>
-    </Paper>
-    
-    <Modal
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-        open={open}
-        onClose={handleClose}
-      >
-        <div style={modalStyle} className={classes.paper}>
-          <h2 id="simple-modal-title">Text in a modal</h2>
-          <p id="simple-modal-description">
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </p>
-          <SimpleModal />
-        </div>
-        </Modal>
-        </>
+      </Paper>
+    </>
   );
 }
 

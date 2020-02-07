@@ -22,7 +22,7 @@ export default function StarRating(props) {
     
   }
 
-  if(user.id === profile.id)
+  if(!(profile && profile.id && profile.id.length) || profile.id < 0 || user.id === profile.id)
   return (
     <div>
      

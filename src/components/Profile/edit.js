@@ -4,12 +4,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { useHistory, Redirect, Link } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import Profile from '../Profile';
 import Avatar from '@material-ui/core/Avatar';
 import axios from 'axios';
 import {DEFAULT_BACKEND_HOST, DEFAULT_EMPTY_USER} from '../../config';
-import subjectMock from '../mock/subjects.json';
 
 axios.defaults.baseURL = DEFAULT_BACKEND_HOST;
 
@@ -63,9 +62,8 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function MyProfile() {
+export default function MyProfile(props) {
   const classes = useStyles();
-  const history = useHistory();
   const localInfo = {
     token: localStorage.getItem('token'),
     user_id: localStorage.getItem('user_id')
@@ -75,6 +73,8 @@ export default function MyProfile() {
 
   const [newUser, setNewUser] = useState(DEFAULT_EMPTY_USER)
   const [subjects, setSubjects] = useState([]);
+
+  const {handleClose} = props;
 
 
   useEffect(() => {
@@ -94,15 +94,12 @@ export default function MyProfile() {
     axios.get('/subjects/', {})
       .then(response => {
         console.log(response)
-        return response.data
+        const result = response.data;
+        setSubjects(result);
+        console.log(result);
       })
       .catch(error => {
-        console.log("No response from remote server");
-        return subjectMock.get.success
-      })
-      .then(result => {
-        setSubjects(result)
-        console.log(result)
+        console.log("No response from remote server", error);
       });
   }, []);
 
@@ -114,13 +111,11 @@ export default function MyProfile() {
     let user_id = localStorage.getItem('user_id');
     axios.put('/user/' + user_id, newUser)
       .then(response => {
-        console.log(response)
+        console.log(response);
+        handleClose();
       })
       .catch(error => {
         console.log(error)
-      })
-      .then(result => {
-        //history.push('/')
       });
   };
 
@@ -152,8 +147,7 @@ export default function MyProfile() {
                   variant="contained"
                   color="error"
                   className={classes.button}
-                  component={Link}
-                  to='/'
+                  onClick={handleClose}
                 >
                   {'Отменить'}
                 </Button>
