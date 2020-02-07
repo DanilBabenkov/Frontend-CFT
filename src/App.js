@@ -13,6 +13,7 @@ import SignOut from './pages/login/SignOut';
 import Main from './pages/Main';
 import Start from './pages/Start';
 import Profile from './pages/Profile';
+import NewMyProfile from './pages/Profiles/NewMyProfile';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { orange } from '@material-ui/core/colors';
 
@@ -33,9 +34,6 @@ function App() {
       <Router>
         <Layout>
           <Switch>
-            <Route path="/other_profile">
-              <OtherProfile />
-            </Route>
             <Route path="/sign_in">
               <SignIn />
             </Route>
@@ -44,7 +42,7 @@ function App() {
             </Route>
             <Route path="/user/:id" component={Profile} />
           <Route path="/other_profile">
-            <OtherProfile />
+            <Profile />
           </Route>
           <Route path="/profile">
             <NewMyProfile />
