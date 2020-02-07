@@ -25,7 +25,8 @@ function MainInfo(props) {
   const updateUser = (value, key) => {
     let newUser = Object.assign({}, user);
     newUser[key] = value;
-    setUser(newUser)
+    setUser(newUser);
+    props.setNewUser(newUser);
   };
 
   useEffect(() => {
@@ -125,6 +126,7 @@ class SkillTags extends React.Component {
       let newUser = Object.assign({}, this.state.user);
       newUser[key] = value;
       this.setState({user: newUser})
+      this.props.setNewUser(newUser);
     }
 
     render() {

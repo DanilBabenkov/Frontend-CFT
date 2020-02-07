@@ -14,6 +14,19 @@ import subjectMock from '../../mock/subjects.json';
 
 axios.defaults.baseURL = config.backend_host;
 
+const DEFAULT_EMPTY_USER = { 
+  "id": -1,
+  "firstName": "",
+  "lastName": "",
+  "paronym": "",
+  "about": "",
+  "isTeacher": false,
+  "subjects": [],
+  "price": 0,
+  "avgMark": 0,
+  "photo" : null
+}
+
 const useStyles = makeStyles(theme => ({
   avatar: {
     width: '3.0em',
@@ -71,31 +84,24 @@ export default function MyProfile() {
     user_id: localStorage.getItem('user_id')
   }
 
-  const [user, setUser] = useState({
-    "firstName": "",
-    "lastName": "",
-    "about": "",
-    "isTeacher": false,
-    "subjects": []
-  });
+  const [user, setUser] = useState(DEFAULT_EMPTY_USER);
 
+  const [newUser, setNewUser] = useState(DEFAULT_EMPTY_USER)
   const [subjects, setSubjects] = useState([]);
 
 
   useEffect(() => {
+    let token = localStorage.getItem('token');
     let user_id = localStorage.getItem('user_id');
-    axios.get('/user/' + user_id, {})
+    axios.defaults.headers.common['Authorization'] = token;
+    axios.get('/user/' + user_id)
       .then(response => {
         console.log(response)
-        return response.data
+        let result = response.data;
+        setUser(result)
       })
       .catch(error => {
-        console.log("No response from remote server");
-        return userMock.get.success
-      })
-      .then(result => {
-        setUser(result)
-        console.log(result)
+        console.log("No response from remote server", error);
       });
 
     axios.get('/subjects/', {})
@@ -119,7 +125,7 @@ export default function MyProfile() {
   const handleSave = (event) => {
     event.preventDefault();
     let user_id = localStorage.getItem('user_id');
-    axios.put('/user/' + user_id, user)
+    axios.put('/user/' + user_id, newUser)
       .then(response => {
         console.log(response)
       })
@@ -144,8 +150,8 @@ export default function MyProfile() {
           </div>
           <>
             <>
-              <Profile.MainInfo user={user} />
-              <Profile.SkillTags user={user} subjects={subjects}/>
+              <Profile.MainInfo user={user} setNewUser={setNewUser}/>
+              <Profile.SkillTags user={user} subjects={subjects} setNewUser={setNewUser}/>
               <div className={classes.buttons}>
                 <Button
                   variant="contained"
