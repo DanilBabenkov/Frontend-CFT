@@ -59,7 +59,7 @@ export default function SignIn() {
     })
     .then(function (response) {
       console.log(response);
-      return response;
+      return response.data;
     })
     .catch(function (error) {
       return loginMock.post.success;

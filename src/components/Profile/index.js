@@ -10,7 +10,7 @@ const DEFAULT_EMPTY_USER = {
   "id": -1,
   "firstName": "",
   "lastName": "",
-  "paronym": "ч",
+  "paronym": "",
   "about": "",
   "isTeacher": false,
   "subjects": [],
@@ -83,14 +83,34 @@ function MainInfo(props) {
 class SkillTags extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {checked: props.user.isTeacher , tags: props.user.subjects, user: DEFAULT_EMPTY_USER}
+        this.state = {tags: [], user: DEFAULT_EMPTY_USER}
         this.onTagsChanged = this.onTagsChanged.bind(this);
     }
 
-    handleCheckboxChange = event =>
-    this.setState({ checked: event.target.checked })
+    componentDidUpdate(prevProps){
+      let do_subjects = () => {
+        let defineSubject = (subject_id) => {
+          return this.props.subjects.filter(subject => (subject.id == subject_id))[0].name
+        };
+
+        let subject_names = this.props.user.subjects.map(defineSubject)
+        this.setState({tags: subject_names})
+      }
+
+      if (this.props.user.firstName !== prevProps.user.firstName){
+        this.setState({user: this.props.user})
+        if(this.props.subjects.length)
+          do_subjects()
+      }
+      
+      if (this.props.subjects !== prevProps.subjects){
+        if(this.props.user.firstName && this.props.user.firstName.length)
+        do_subjects()
+      }
+    }
 
     onTagsChanged(tags) {
+      console.log("Tags are ", tags);
       this.setState({tags})
     }
 
@@ -108,16 +128,15 @@ class SkillTags extends React.Component {
                 control={
                   <Checkbox
                     color="secondary" 
-                    checked={this.state.checked}
-                    onChange={this.handleCheckboxChange} 
+                    checked={Boolean(this.state.user.isTeacher)}
+                    onChange={e => {this.updateUser(Boolean(e.target.checked), 'isTeacher')}}
                     name="isTeacher" 
-                    value="yes"
                   />
                 }
                 label="Я преподаватель"
               />
           </Grid>
-          {this.state.checked ?
+          {this.state.user.isTeacher ?
             <Grid  item xs={12}>
               <TextField
                 id="price"

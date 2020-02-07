@@ -60,8 +60,8 @@ export default function SignUp() {
     })
     .then(function (response) {
       console.log('Response is:\n');
-      console.log(response);
-      return response;
+      console.log(response.data);
+      return response.data;
     })
     .catch(function (error) {
       
