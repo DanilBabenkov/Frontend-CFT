@@ -112,7 +112,8 @@ class PersonsList extends React.Component {
     axios.get('http://repetito.herokuapp.com/user')
       .then(res => {
         console.log(res);
-        this.setState({ persons: res.data });
+        let users = res.data;
+        this.setState({ persons: users.filter(user=> user.isTeacher) });
       })
   }
 
