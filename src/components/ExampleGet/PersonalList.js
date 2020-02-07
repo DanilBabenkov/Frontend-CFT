@@ -103,7 +103,6 @@ const classes = makeStyles(theme => ({
 }));
 
 class PersonsList extends React.Component {
-
   state = {
     persons: []
   }
@@ -113,16 +112,12 @@ class PersonsList extends React.Component {
       .then(res => {
         console.log(res);
         let users = res.data;
-        this.setState({ persons: users.filter(user=> user.isTeacher) });
+        this.setState({ persons: users/*.filter(user=> user.isTeacher) */});
       })
   }
 
   render() {
     return (
-      // <ul>
-      //     {this.state.persons.map(person => <li key={person.id}>{person.name}</li>)}
-      // </ul>
-
       this.state.persons.map(person => (
         <Grid item key={person.id} xs={12} sm={6} md={4}>
           <Card className={classes.card}>
@@ -140,7 +135,8 @@ class PersonsList extends React.Component {
                 {person.about}
               </Typography>
               <Typography>
-                {'Средняя оценка: ' + person.avgMark}
+                
+                  {person.price + ' руб./занятие'}
               </Typography>
             </CardContent>
             <CardActions>
@@ -150,12 +146,11 @@ class PersonsList extends React.Component {
                 justify="space-between"
                 alignItems="flex-start"
               >
-                <Button component={Link} to="/profile" size="small" color="primary">
+                <Button component={Link} to={"/user/"+person.id} size="small" color="primary">
                   Смотреть
-                      </Button>
-
-                <Button size="small" color="primary">
-                  {person.price + ' руб./занятие'}
+                </Button>
+                <Button size="small" disabled="true">
+                {'Средняя оценка: ' + person.avgMark}
                 </Button>
               </Grid>
             </CardActions>

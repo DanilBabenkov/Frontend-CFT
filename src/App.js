@@ -6,13 +6,12 @@ import {
   Switch
 } from 'react-router-dom';
 import Layout from './components/Layout';
-import MyProfile from './pages/Profiles/MyProfile';
 import SignIn from './pages/login/SignIN';
 import SignUP from './pages/login/SignUP';
 import SignOut from './pages/login/SignOut';
 import Main from './pages/Main';
 import Start from './pages/Start';
-import OtherProfile from './pages/Profiles/OtherProfile';
+import Profile from './pages/Profile';
 
 function App() {
   let token = localStorage.getItem('token');
@@ -23,10 +22,7 @@ function App() {
     <Router>
       <Layout>
         <Switch>
-          <Route path="/profile">
-            <MyProfile />
-          </Route>
-          <Route path="/user/:id" component={OtherProfile} />
+          <Route path="/user/:id" component={Profile} />
           <Route path="/sign_in">
             <SignIn />
           </Route>

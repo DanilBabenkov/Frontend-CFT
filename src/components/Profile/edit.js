@@ -5,12 +5,11 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { useHistory, Redirect, Link } from "react-router-dom";
-import Profile from '../../components/Profile';
+import Profile from '../Profile';
 import Avatar from '@material-ui/core/Avatar';
 import axios from 'axios';
 import config from '../../config';
-import userMock from '../../mock/user.json';
-import subjectMock from '../../mock/subjects.json';
+import subjectMock from '../mock/subjects.json';
 
 axios.defaults.baseURL = config.backend_host;
 

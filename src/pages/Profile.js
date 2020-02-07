@@ -4,10 +4,10 @@ import Container from '@material-ui/core/Container';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
-import MainFeaturedPost from '../../components/forOther/MainFeaturedPost';
-import FeaturedPost from '../../components/forOther/FeaturedPost';
-import Sidebar from '../../components/forOther/Sidebar';
-import SimpleExpansionPanel from '../../components/forOther/Panels'
+import MainFeaturedPost from '../components/forOther/MainFeaturedPost';
+import FeaturedPost from '../components/forOther/FeaturedPost';
+import Sidebar from '../components/forOther/Sidebar';
+import SimpleExpansionPanel from '../components/forOther/Panels'
 
 const mainFeaturedPost = {
   title: 'Кирилл Зырянов',
@@ -15,6 +15,7 @@ const mainFeaturedPost = {
     "Программист",
   image: 'https://source.unsplash.com/random',
   imgText: 'main image description',
+  linkText: 'Редактировать'
 };
 
 const featuredPosts = [
