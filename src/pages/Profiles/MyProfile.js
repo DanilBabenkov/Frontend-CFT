@@ -116,9 +116,10 @@ export default function MyProfile() {
   if (!localInfo.token || !localInfo.user_id)
     return <Redirect to="/" />
 
-  const handleSave = () => {
+  const handleSave = (event) => {
+    event.preventDefault();
     let user_id = localStorage.getItem('user_id');
-    axios.put('/user/' + user_id)
+    axios.put('/user/' + user_id, user)
       .then(response => {
         
       })

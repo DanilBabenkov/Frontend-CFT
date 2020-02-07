@@ -96,7 +96,12 @@ class SkillTags extends React.Component {
         if(!(this.props.user.subjects && this.props.user.subjects.length))
         return;
         let subject_names = this.props.user.subjects.map(defineSubject)
-        this.setState({tags: subject_names})
+        let tags = subject_names.map((name, index) => ({
+          index,
+          'displayValue': name
+        }));
+
+        this.setState({tags})
       }
 
       if (this.props.user.firstName !== prevProps.user.firstName){
