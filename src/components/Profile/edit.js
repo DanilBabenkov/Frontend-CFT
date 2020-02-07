@@ -8,23 +8,11 @@ import { useHistory, Redirect, Link } from "react-router-dom";
 import Profile from '../Profile';
 import Avatar from '@material-ui/core/Avatar';
 import axios from 'axios';
-import config from '../../config';
+import {DEFAULT_BACKEND_HOST, DEFAULT_EMPTY_USER} from '../../config';
 import subjectMock from '../mock/subjects.json';
 
-axios.defaults.baseURL = config.backend_host;
+axios.defaults.baseURL = DEFAULT_BACKEND_HOST;
 
-const DEFAULT_EMPTY_USER = { 
-  "id": -1,
-  "firstName": "",
-  "lastName": "",
-  "paronym": "",
-  "about": "",
-  "isTeacher": false,
-  "subjects": [],
-  "price": 0,
-  "avgMark": 0,
-  "photo" : null
-}
 
 const useStyles = makeStyles(theme => ({
   avatar: {

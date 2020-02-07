@@ -5,19 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import {TagInput} from '../TagInput';
-
-const DEFAULT_EMPTY_USER = { 
-  "id": -1,
-  "firstName": "",
-  "lastName": "",
-  "paronym": "",
-  "about": "",
-  "isTeacher": false,
-  "subjects": [],
-  "price": 0,
-  "avgMark": 0,
-  "photo" : null
-}
+import {DEFAULT_EMPTY_USER} from '../../config';
 
 function MainInfo(props) {
   const [user, setUser] = useState(DEFAULT_EMPTY_USER);

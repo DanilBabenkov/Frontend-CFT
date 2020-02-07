@@ -149,7 +149,7 @@ class PersonsList extends React.Component {
                 <Button component={Link} to={"/user/"+person.id} size="small" color="primary">
                   Смотреть
                 </Button>
-                <Button size="small" disabled="true">
+                <Button size="small" disabled={true}>
                 {'Средняя оценка: ' + person.avgMark}
                 </Button>
               </Grid>
