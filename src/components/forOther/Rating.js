@@ -22,31 +22,21 @@ export default function StarRating(props) {
     
   }
 
-  if(!(profile && profile.id && profile.id.length) || profile.id < 0 || user.id === profile.id)
+  const auth = (token && token.length);
+  const canChange = (!auth || profile.id < 0 || user.id === profile.id);
+
   return (
     <div>
      
       <Box component="fieldset" borderColor="transparent">
-        <Typography variant="h6" component="legend">Ваш Рейтинг</Typography>
-        <Rating name="read-only" value={mark} readOnly />
+        <Typography variant="h6" component="legend">{ canChange? 'Рейтинг преподавателя' : 'Ваш Рейтинг'}</Typography>
+        <Rating 
+          name="read-only"
+          value={mark} 
+          readOnly={!canChange}
+          onChange={(canChange)? handleChange : ()=>{}}/>
       </Box>
       
     </div>
   )
-  else
-  return (
-    <div>
-
-      <Box component="fieldset" borderColor="transparent">
-        <Typography variant="h6" component="legend">Рейтинг преподавателя</Typography>
-        <Rating
-          name="simple-controlled"
-          value={mark}
-          onChange={handleChange}
-        />
-      </Box>
-
-
-    </div>
-  );
 }
