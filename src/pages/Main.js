@@ -3,7 +3,11 @@ import { makeStyles} from '@material-ui/core/styles';
 import {Link} from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch
+} from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
@@ -150,7 +154,13 @@ export default function MiniDrawer() {
               </Grid>
             ))}
             </Grid>
-            <Button variant="contained" color="primary" style={{ marginBotton: 30}}>
+            <Button 
+                variant="contained"
+                color="primary"
+                style={{ marginBotton: 30}}
+                component={Link}
+                to="/change_profile"
+                >
               Добавить публикацию
             </Button>
             {/* End hero unit */}

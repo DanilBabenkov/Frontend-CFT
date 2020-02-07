@@ -13,6 +13,7 @@ import SignOut from './pages/login/SignOut';
 import Main from './pages/Main';
 import Start from './pages/Start';
 import Profile from './pages/Profile';
+import ChangeProfile from './components/Profile/changeProfile'
 import NewMyProfile from './pages/Profiles/NewMyProfile';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { orange } from '@material-ui/core/colors';
@@ -46,6 +47,9 @@ function App() {
           </Route>
           <Route path="/profile">
             <NewMyProfile />
+          </Route>
+          <Route path="/change_profile">
+          <ChangeProfile/>
           </Route>
           <Route path="/">
             {authorised? <Main />:<Start />}

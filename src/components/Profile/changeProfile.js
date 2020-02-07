@@ -9,22 +9,8 @@ import Profile from '../Profile';
 import Avatar from '@material-ui/core/Avatar';
 import axios from 'axios';
 import config from '../../config';
-import subjectMock from '../mock/subjects.json';
 
 axios.defaults.baseURL = config.backend_host;
-
-const DEFAULT_EMPTY_USER = { 
-  "id": -1,
-  "firstName": "",
-  "lastName": "",
-  "paronym": "",
-  "about": "",
-  "isTeacher": false,
-  "subjects": [],
-  "price": 0,
-  "avgMark": 0,
-  "photo" : null
-}
 
 const useStyles = makeStyles(theme => ({
   avatar: {
@@ -76,86 +62,56 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function MyProfile() {
-  const classes = useStyles();
-  const history = useHistory();
-  const localInfo = {
-    token: localStorage.getItem('token'),
-    user_id: localStorage.getItem('user_id')
-  }
+    const classes = useStyles();
+    
+    const localInfo = {
+      token: localStorage.getItem('token'),
+      user_id: localStorage.getItem('user_id')
+    }
+    const [user, setUser] = useState({firstName:"", lastName:"", teacher:"", faculty:"", course:"", subjects:"", degree:"", about:""});
 
-  const [user, setUser] = useState(DEFAULT_EMPTY_USER);
+    const [subjects, setSubjects] = useState([]);
 
-  const [newUser, setNewUser] = useState(DEFAULT_EMPTY_USER)
-  const [subjects, setSubjects] = useState([]);
+    useEffect(() => {
+        let token = localStorage.getItem('token');
+        let user_id = localStorage.getItem('user_id');
+        axios.defaults.headers.common['Authorization'] = token;
+        axios.get(`http://repetito.herokuapp.com/user/${user_id}`)
+          .then(response => {
+            console.log(response.data)
+            let result = response.data;
+            setUser(result);
+          })
+          .catch(error => {
+            console.log("No response from remote server", error);
+          });
 
-
-  useEffect(() => {
-    let token = localStorage.getItem('token');
-    let user_id = localStorage.getItem('user_id');
-    axios.defaults.headers.common['Authorization'] = token;
-    axios.get('/user/' + user_id)
-      .then(response => {
-        console.log(response)
-        let result = response.data;
-        setUser(result)
+          axios.get('http://repetito.herokuapp.com/subjects')
+            .then(res => {
+            console.log(res);
+            setSubjects( res.data );
       })
-      .catch(error => {
-        console.log("No response from remote server", error);
-      });
-
-    // axios.get('/subjects/', {})
-    //   .then(response => {
-    //     console.log(response)
-    //     return response.data
-    //   })
-    //   .catch(error => {
-    //     console.log("No response from remote server");
-    //     return subjectMock.get.success
-    //   })
-    //   .then(result => {
-    //     setSubjects(result)
-    //     console.log(result)
-    //   });
-  }, []);
-
-  if (!localInfo.token || !localInfo.user_id)
-    return <Redirect to="/" />
-
-  const handleSave = (event) => {
-    event.preventDefault();
-    let user_id = localStorage.getItem('user_id');
-    axios.put('/user/' + user_id, newUser)
-      .then(response => {
-        console.log(response)
-      })
-      .catch(error => {
-        console.log(error)
-      })
-      .then(result => {
-        //history.push('/')
-      });
-  };
-
+      }, []);
   return (
     <>
       <CssBaseline />
       <main className={classes.layout}>
         <Paper className={classes.paper}>
           <div className={classes.container}>
-            <Avatar className={classes.avatar}>{user.firstName[0]}{user.lastName[0]}</Avatar>
+            <Avatar className={classes.avatar}>{ user.firstName[0] }{ user.lastName[0] }</Avatar>
             <Typography component="h1" variant="h4" align="center">
-              {user.firstName} {user.lastName}
+            { user.firstName } { user.lastName }
             </Typography>
           </div>
           <>
             <>
-              <Profile.MainInfo user={user} setNewUser={setNewUser}/>
-              <Profile.SkillTags user={user} subjects={subjects} setNewUser={setNewUser}/>
+              <Profile.MainInfo user={user} setNewUser={'Даниил'}/>
+              <Profile.SkillTags user={user} subjects={subjects} setNewUser={'Даниил'}/>
               <div className={classes.buttons}>
                 <Button
                   variant="contained"
                   color="primary"
-                  onClick={handleSave}
+                //   onClick={handleSave}
                   className={classes.button}
                 >
                   {'Сохранить'}

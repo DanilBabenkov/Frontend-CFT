@@ -5,6 +5,10 @@ import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import {TagInput} from '../TagInput';
+import FadeIn from "react-fade-in";
+import Lottie from "react-lottie";
+import ReactLoading from "react-loading";
+import "bootstrap/dist/css/bootstrap.css";
 
 const DEFAULT_EMPTY_USER = { 
   "id": -1,
@@ -19,27 +23,52 @@ const DEFAULT_EMPTY_USER = {
   "photo" : null
 }
 
-function MainInfo(props) {
-  const [user, setUser] = useState(DEFAULT_EMPTY_USER);
+class MainInfo extends React.Component {
+//   constructor(props){
+//     super(props)
+//     this.state = {
+//        done: true,
+//        firstName: props.user.firstName,
+//     }
+//  }
+state = {
+  firstName: '',
+  done: true,
+}
+  // const [user, setUser] = useState(DEFAULT_EMPTY_USER);
 
-  const updateUser = (value, key) => {
-    let newUser = Object.assign({}, user);
-    newUser[key] = value;
-    setUser(newUser);
-    props.setNewUser(newUser);
-  };
-
-  useEffect(() => {
-    if(props.user.firstName)
-    setUser(props.user);
-  }, [props.user]);
-
+  // updateUser = (value, key) => {
+  //   let newUser = Object.assign({}, user);
+  //   newUser[key] = value;
+  //   setUser(newUser);
+  // };
+  // handleChange(e) {
+  //   this.props.onTemperatureChange(e.target.value);
+  // }
+  handleChange(event) {
+    this.setState({firstName: event.target.value});
+  }
+  // useEffect(() => {
+  //   if(props.user.firstName)
+  //   setUser(props.user);
+  //   console.log('prop', props)
+  // }, [props.user]);
+render() {
+  const {user, setNewUser} = this.props;
+  console.log('sf',user);
+  console.log(this.state.done);
   return (
     <>
       <Typography variant="h6" gutterBottom>
         Общая информация
       </Typography>
+      
       <Grid container spacing={3}>
+        {!this.state.done ? (
+            <ReactLoading type={"bars"} color={"white"} />
+         ) : (
+           <>
+         
         <Grid item xs={12} sm={6}>
           <TextField
             required
@@ -48,20 +77,47 @@ function MainInfo(props) {
             label="Имя"
             fullWidth
             autoComplete="fname"
-            onChange={val=> updateUser(val.target.value, "firstName")}
-            value={user.firstName}
+            value={this.state.firstName}
+            onChange={this.handleChange}
+            
           />
         </Grid>
+       
         <Grid item xs={12} sm={6}>
           <TextField
             required
             id="lastName"
             name="lastName"
             label="Фамилия"
-            onChange={val=> updateUser(val.target.value, "lastName")}
+            // onChange={val=> updateUser(val.target.value, "lastName")}
             value={user.lastName}
             fullWidth
             autoComplete="lname"
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="faculty"
+            name="faculty"
+            label="Факультет"
+            fullWidth
+            autoComplete="fac"
+            // onChange={val=> updateUser(val.target.value, "firstName")}
+            value={user.faculty}
+          />
+        </Grid>
+       
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="course"
+            name="course"
+            label="Курс"
+            // onChange={val=> updateUser(val.target.value, "lastName")}
+            value={user.course}
+            fullWidth
+            autoComplete="cour"
           />
         </Grid>
         <Grid item xs={12}>
@@ -71,14 +127,18 @@ function MainInfo(props) {
             name="about"
             label="О себе"
             fullWidth
-            onChange={val=> updateUser(val.target.value, "about")}
+            // onChange={val=> updateUser(val.target.value, "about")}
             value={user.about}
             multiline
           />
-        </Grid>
+        </Grid>  
+        </>
+        )}
       </Grid>
     </>
   );
+}
+
 }
 
 class SkillTags extends React.Component {
