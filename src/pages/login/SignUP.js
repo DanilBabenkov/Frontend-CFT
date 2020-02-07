@@ -50,7 +50,6 @@ export default function SignUp() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log({firstName, lastName, email, password, isTeacher});
 
     axios.post('/user', {
       email,
@@ -65,6 +64,8 @@ export default function SignUp() {
       return response;
     })
     .catch(function (error) {
+      
+      console.log('No response from remote');
       return signUpMock.post.success;
     })
     .then(function(result){

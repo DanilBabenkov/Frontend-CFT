@@ -1,4 +1,4 @@
-import React, {useState}  from 'react';
+import React, { useEffect, useState } from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -8,8 +8,11 @@ import { useHistory, Redirect } from "react-router-dom";
 import Profile from '../../components/Profile';
 import Avatar from '@material-ui/core/Avatar';
 import axios from 'axios';
-
+import config from '../../config';
 import userMock from '../../mock/user.json';
+import subjectMock from '../../mock/subjects.json';
+
+axios.defaults.baseURL = config.backend_host;
 
 const useStyles = makeStyles(theme => ({
   avatar: {
@@ -72,37 +75,47 @@ export default function MyProfile() {
     "firstName": "",
     "lastName": "",
     "about": "",
-    "isTeacher": false
-  })
-
-  if(!localInfo.token || !localInfo.user_id){
-    return <Redirect to="/"></Redirect>
-  }
-
-  const handleNext = () => {
-    history.push("/");
-  };
-
-  axios.get('/user/', {
-    token: localInfo.token
-  })
-  .then(response => {
-    console.log(response)
-    return response
-  })
-  .catch(error => {
-    return userMock.get.success
-  })
-  .then(result => {
-    if(result && 'id' in result){
-      setUser(result)
-    }else{
-      console.log('Troubles')
-    }
+    "isTeacher": false,
+    "subjects": []
   });
 
+
+  useEffect(() => {
+    let user_id = localStorage.getItem('user_id');
+    axios.get('/user/' + user_id, {})
+      .then(response => {
+        console.log(response)
+        return response
+      })
+      .catch(error => {
+        console.log("No response from remote server");
+        return userMock.get.success
+      })
+      .then(result => {
+        setUser(result)
+        console.log(result)
+      });
+  }, []);
+
+  if (!localInfo.token || !localInfo.user_id)
+    return <Redirect to="/" />
+
+  const handleSave = () => {
+    let user_id = localStorage.getItem('user_id');
+    axios.put('/user/' + user_id)
+      .then(response => {
+
+      })
+      .catch(error => {
+        console.log(error)
+      })
+      .then(result => {
+        history.push('/')
+      });
+  };
+
   return (
-    <React.Fragment>
+    <>
       <CssBaseline />
       <main className={classes.layout}>
         <Paper className={classes.paper}>
@@ -112,25 +125,24 @@ export default function MyProfile() {
               {user.firstName} {user.lastName}
             </Typography>
           </div>
-      
-          <React.Fragment>
-            <React.Fragment>
-                <Profile.MainInfo user={user}/>
-                <Profile.SkillTags user={user}/>
-                <div className={classes.buttons}>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={handleNext}
-                    className={classes.button}
-                  >
-                    {'Сохранить'}
-                  </Button>
-                </div>
-              </React.Fragment>
-          </React.Fragment>
+          <>
+            <>
+              <Profile.MainInfo user={user} />
+              <Profile.SkillTags user={user} />
+              <div className={classes.buttons}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={handleSave}
+                  className={classes.button}
+                >
+                  {'Сохранить'}
+                </Button>
+              </div>
+            </>
+          </>
         </Paper>
       </main>
-    </React.Fragment>
+    </>
   );
 }

@@ -233,7 +233,7 @@ var TagInput = function (_Component) {
                 { onClick: this.focusInput },
                 this.renderTags(),
                 React.createElement(InputComponent, {
-                    autoFocus:true,
+                    //autoFocus:true,
                     ref: function ref(el) {
                         return _this6.input = el;
                     },
