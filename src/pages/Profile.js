@@ -67,20 +67,10 @@ const useStyles = makeStyles(theme => ({
 
 const featuredPosts = [
   {
-    title: 'Проект №1',
-
-    description:
-      'Тут я делал тото',
-    image: 'https://source.unsplash.com/random',
-    imageText: 'Image Text',
+    title: 'Отзыв раз Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis egetLorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget',
   },
   {
-    title: 'Проект №2',
-
-    description:
-      'А тут я делал тото',
-    image: 'https://source.unsplash.com/random',
-    imageText: 'Image Text',
+    title: 'Отзыв два Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuad leo lobortis eget',
   },
 ];
 
@@ -173,16 +163,21 @@ export default function Profile(props) {
       <Container maxWidth="lg">
         <main>
           <MainFeaturedPost post={mainFeaturedPost} />
-          <Grid container spacing={4} >
-            {featuredPosts.map(post => (
-              <FeaturedPost key={post.title} post={post} />
-            ))}
-          </Grid>
-          <Grid container spacing={3}>
-            <Grid item xs={8} >
-              <SimpleExpansionPanel />
+          <Grid container spacing={3} >
+            <Grid spacing={3} container item xs={8} >
+              <Grid item>
+                <SimpleExpansionPanel />
+              </Grid>
+              <Grid item >
+                <Grid item container spacing={3} >
+                {featuredPosts.map(post => (
+                  <FeaturedPost key={post.title} post={post} />
+                ))}
+                </Grid>
             </Grid>
-            <Grid item xs={4} >
+          </Grid>
+           
+            <Grid item xs={4} spacing={3} >
               <Sidebar
                 title={sidebar.title}
                 description={sidebar.description}

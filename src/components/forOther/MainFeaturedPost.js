@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import AccountIcon from '../../components/avatars/AccountIcon';
 
 const useStyles = makeStyles(theme => ({
   mainFeaturedPost: {
@@ -49,22 +50,27 @@ export default function MainFeaturedPost(props) {
   return (
     <>
       <Paper className={classes.mainFeaturedPost} style={{ backgroundImage: `url(${post.image})` }}>
-        {/* Increase the priority of the hero background image */}
-        {<img style={{ display: 'none' }} src={post.image} alt={post.imageText} />}
-        <div className={classes.overlay} />
-        <Grid container>
-          <Grid item md={6}>
-            <div className={classes.mainFeaturedPostContent}>
-              <Typography component="h1" variant="h3" color="inherit" gutterBottom>
-                {post.title}
-              </Typography>
-              <Typography variant="h5" color="inherit" paragraph>
-                {post.description}
-              </Typography>
-            </div>
-          </Grid>
+      {/* Increase the priority of the hero background image */}
+      {<img style={{ display: 'none' }} src={post.image} alt={post.imageText} />}
+      <div className={classes.overlay} />
+      <Grid container >
+        <Grid item md={6}  >
+          <div className={classes.mainFeaturedPostContent}>
+            <Typography component="h1" variant="h3" color="inherit" gutterBottom>
+              {post.title}
+            </Typography>
+            <Typography variant="h5" color="inherit" paragraph>
+              {post.description}
+            </Typography>           
+          </div>
         </Grid>
-      </Paper>
+          <Grid item md={6} >
+          <div className={classes.mainFeaturedPostContent}>
+          <AccountIcon />
+          </div>
+        </Grid>
+      </Grid>
+    </Paper>
     </>
   );
 }
