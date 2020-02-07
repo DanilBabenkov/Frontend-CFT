@@ -112,7 +112,7 @@ export default function MiniDrawer() {
         {/* Hero unit */}
         
         
-        <Container className={classes.cardGrid} maxWidth="md">
+        <Container className={classes.cardGrid} >
           {/* End hero unit */}
           <Grid container spacing={4}>
             {cards.map(card => (
