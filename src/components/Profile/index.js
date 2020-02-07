@@ -125,15 +125,15 @@ class SkillTags extends React.Component {
                 control={
                   <Checkbox
                     color="secondary" 
-                    checked={Boolean(this.state.user.isTeacher)}
-                    onChange={e => {this.updateUser(Boolean(e.target.checked), 'isTeacher')}}
-                    name="isTeacher" 
+                    checked={Boolean(this.state.user.teacher)}
+                    onChange={e => {this.updateUser(Boolean(e.target.checked), 'teacher')}}
+                    name="teacher" 
                   />
                 }
                 label="Я преподаватель"
               />
           </Grid>
-          {this.state.user.isTeacher ?
+          {this.state.user.teacher ?
             <Grid  item xs={12}>
               <TextField
                 id="price"

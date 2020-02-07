@@ -15,7 +15,7 @@
                 "lastName": "Иванов",
                 "paronym": "Иванович",
                 "about": "Описание преподавателя",
-                "isTeacher": true,
+                "teacher": true,
                 "subjects": [1,2],
                 "price": 1000,
                 "avgMark": 3.4,
