@@ -5,6 +5,7 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -31,8 +32,7 @@ export default function SimpleExpansionPanel() {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget.
+            Тут пока пусто. 
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
@@ -43,12 +43,26 @@ export default function SimpleExpansionPanel() {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography className={classes.heading}>Увлечения</Typography>
+          <Typography className={classes.heading}>Обо мне</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget.
+          Тут пока пусто.
+          </Typography>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+
+      <ExpansionPanel>
+        <ExpansionPanelSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <Typography className={classes.heading}>Не смотри сюда</Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <Typography>
+          Тут просто много букв потому что я хз как растянуть эту штуку подругому, react полная ***, зачем вообще делать верстку в js?  
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
@@ -59,13 +73,12 @@ export default function SimpleExpansionPanel() {
           aria-controls="panel2a-content"
           id="panel2a-header"
         >
-          <Typography className={classes.heading}>Чето еще</Typography>
+          <Typography className={classes.heading}>Оставить отзыв</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget.
-          </Typography>
+        <form className={classes.root} noValidate autoComplete="off">
+          <TextField fullWidth id="outlined-basic" label="Ваш отзыв очень важен для нас" variant="outlined" />
+        </form>
         </ExpansionPanelDetails>
       </ExpansionPanel>
       

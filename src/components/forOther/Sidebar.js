@@ -27,7 +27,7 @@ export default function Sidebar(props) {
   return (
     <Grid item xs={12} key="asd">
       <Paper elevation={0} className={classes.sidebarAboutBox}>
-        <Typography variant="h6" gutterBottom>
+        <Typography variant="h6" >
           {title}
         </Typography>
         <Typography>{description}</Typography>
