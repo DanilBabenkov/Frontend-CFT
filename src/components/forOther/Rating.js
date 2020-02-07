@@ -23,11 +23,11 @@ export default function StarRating(props) {
   }
 
   const auth = (token && token.length);
-  const canChange = (!auth || profile.id < 0 || user.id === profile.id);
+  const self = (profile.id < 0 || user.id === profile.id);
+  const canChange = (auth && !self);
 
   return (
     <div>
-     
       <Box component="fieldset" borderColor="transparent">
         <Typography variant="h6" component="legend">{ canChange? 'Рейтинг преподавателя' : 'Ваш Рейтинг'}</Typography>
         <Rating 
@@ -36,7 +36,6 @@ export default function StarRating(props) {
           readOnly={!canChange}
           onChange={(canChange)? handleChange : ()=>{}}/>
       </Box>
-      
     </div>
   )
 }

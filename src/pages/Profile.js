@@ -137,6 +137,9 @@ export default function Profile(props) {
         console.log(error)
       })
 
+    if (profile_id === -1)
+      return;
+
     axios.get('/user/' + profile_id, {})
       .then(response => {
         let result = response.data;
@@ -149,16 +152,21 @@ export default function Profile(props) {
   }, []);
 
   useEffect(() => {
+    if(profile_id === -1)
+      setProfile(user);
+  }, [user]);
+
+  useEffect(() => {
     const newSidebar = Object.assign({}, sidebar);
-    newSidebar.description = user.about;
-    newSidebar.social[0].name = user.email;
+    newSidebar.description = profile.about;
+    newSidebar.social[0].name = profile.email;
     setSidebar(newSidebar);
 
     const newMainFeaturedPost = Object.assign({}, mainFeaturedPost);
-    newMainFeaturedPost.title = user.firstName + " " + user.lastName;
-    newMainFeaturedPost.description = user.subjects.join(' ');
+    newMainFeaturedPost.title = profile.firstName + " " + profile.lastName;
+    newMainFeaturedPost.description = profile.subjects.join(' ');
     setMainFeaturedPost(newMainFeaturedPost);
-  }, [user])
+  }, [profile])
 
   return (
     <>
@@ -194,14 +202,13 @@ export default function Profile(props) {
             open={open}
             onClose={handleClose}
           ><div style={modalStyle} className={classes.paper}>
-          
-          <ProfileEdit handleClose={handleClose}/>
-          <SimpleModal />
-        </div>
+              <ProfileEdit handleClose={handleClose} />
+              <SimpleModal />
+            </div>
           </Modal>
 
         </main>
-    </Container>
+      </Container>
     </>
   );
 }
