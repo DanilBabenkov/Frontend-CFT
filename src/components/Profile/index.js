@@ -90,9 +90,11 @@ class SkillTags extends React.Component {
     componentDidUpdate(prevProps){
       let do_subjects = () => {
         let defineSubject = (subject_id) => {
-          return this.props.subjects.filter(subject => (subject.id == subject_id))[0].name
+          return this.props.subjects.filter(subject => (subject.id === subject_id))[0].name
         };
 
+        if(!(this.props.user.subjects && this.props.user.subjects.length))
+        return;
         let subject_names = this.props.user.subjects.map(defineSubject)
         this.setState({tags: subject_names})
       }

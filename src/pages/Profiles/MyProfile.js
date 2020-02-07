@@ -79,13 +79,15 @@ export default function MyProfile() {
     "subjects": []
   });
 
+  const [subjects, setSubjects] = useState([]);
+
 
   useEffect(() => {
     let user_id = localStorage.getItem('user_id');
     axios.get('/user/' + user_id, {})
       .then(response => {
         console.log(response)
-        return response
+        return response.data
       })
       .catch(error => {
         console.log("No response from remote server");
@@ -93,6 +95,20 @@ export default function MyProfile() {
       })
       .then(result => {
         setUser(result)
+        console.log(result)
+      });
+
+    axios.get('/subjects/', {})
+      .then(response => {
+        console.log(response)
+        return response.data
+      })
+      .catch(error => {
+        console.log("No response from remote server");
+        return subjectMock.get.success
+      })
+      .then(result => {
+        setSubjects(result)
         console.log(result)
       });
   }, []);
@@ -104,7 +120,7 @@ export default function MyProfile() {
     let user_id = localStorage.getItem('user_id');
     axios.put('/user/' + user_id)
       .then(response => {
-
+        
       })
       .catch(error => {
         console.log(error)
@@ -128,7 +144,7 @@ export default function MyProfile() {
           <>
             <>
               <Profile.MainInfo user={user} />
-              <Profile.SkillTags user={user} />
+              <Profile.SkillTags user={user} subjects={subjects}/>
               <div className={classes.buttons}>
                 <Button
                   variant="contained"

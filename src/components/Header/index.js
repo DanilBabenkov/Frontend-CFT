@@ -6,8 +6,6 @@ import { fade, makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import MenuItem from '@material-ui/core/MenuItem';
 import {
-  Route, 
-  Switch, 
   Link
 } from 'react-router-dom';
 import Menu from '@material-ui/core/Menu';

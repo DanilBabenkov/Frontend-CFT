@@ -66,8 +66,8 @@ export default function SignIn() {
     })
     .then(result => {
       console.log(result);
-      if(result.successful === true && result.token && result.user && result.user.id){
-        localStorage.setItem('token', result.token);
+      if(result.successful === true && result.uuid && result.user && result.user.id){
+        localStorage.setItem('token', result.uuid);
         localStorage.setItem('user_id', result.user.id);
         history.push('/');
       }else{

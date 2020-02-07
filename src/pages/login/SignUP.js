@@ -58,26 +58,35 @@ export default function SignUp() {
       lastName,
       isTeacher
     })
-    .then(function (response) {
-      console.log('Response is:\n');
-      console.log(response.data);
-      return response.data;
+    .then(function (resp) {
+      console.log('Reg response is:', resp.data);
+
+      axios.post('/login', {
+        email,
+        password
+      })
+      .then(function (response) {
+        let result = response.data;
+        console.log('Login response is:', result);
+        
+        if(result.successful === true && result.uuid && result.user && result.user.id){
+          localStorage.setItem('token', result.uuid);
+          localStorage.setItem('user_id', result.user.id);
+          history.push('/');
+        }else{
+          console.log("Trouble");
+        }
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
     })
     .catch(function (error) {
-      
-      console.log('No response from remote');
-      return signUpMock.post.success;
-    })
-    .then(function(result){
-      if(result.successful){
-        console.log("Окей");
-        localStorage.setItem('token', result.token);
-        localStorage.setItem('user_id', result.user.id);
-        history.push('/profile');
-      }else{
-        console.log("Trouble")
-      }
+      console.log('No response from remote: ', error);
+      return;
     });
+
+    
   };
 
   return (
