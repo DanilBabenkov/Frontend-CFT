@@ -4,20 +4,18 @@ import Container from '@material-ui/core/Container';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
-import MainFeaturedPost from '../../components/forOther/MainFeaturedPost';
-import FeaturedPost from '../../components/forOther/FeaturedPost';
-import Sidebar from '../../components/forOther/Sidebar';
-import SimpleExpansionPanel from '../../components/forOther/Panels'
-
-
-
+import MainFeaturedPost from '../components/forOther/MainFeaturedPost';
+import FeaturedPost from '../components/forOther/FeaturedPost';
+import Sidebar from '../components/forOther/Sidebar';
+import SimpleExpansionPanel from '../components/forOther/Panels'
 
 const mainFeaturedPost = {
   title: 'Кирилл Зырянов',
   description:
-    "Программист",
+    "тут subjects",
   image: 'https://source.unsplash.com/random',
   imgText: 'main image description',
+  linkText: 'Редактировать'
 };
 
 const featuredPosts = [
@@ -41,25 +39,20 @@ const featuredPosts = [
 
 
 const sidebar = {
-  title: 'About',
+  title: 'Обо мне',
   description:
-    'Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.',
+    'Тут данные из эбаут',
   archives: [
-    { title: 'March 2020', url: '#' },
-    { title: 'February 2020', url: '#' },
-    { title: 'January 2020', url: '#' },
-    { title: 'November 1999', url: '#' },
-    { title: 'October 1999', url: '#' },
-    
+    { title: 'сюда емаил' },
+  
   ],
   social: [
-    { name: 'GitHub', icon: GitHubIcon },
     { name: 'Twitter', icon: TwitterIcon },
     { name: 'Facebook', icon: FacebookIcon },
   ],
 };
 
-export default function OtherProfile() {
+export default function OtherProfile(props) {
   return (
     <React.Fragment>
       <Container maxWidth="lg">
