@@ -5,7 +5,8 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
-import ChangeRating from '../OllRaitings/ChangeRating'
+import Rating from './Rating'
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles(theme => ({
   sidebarAboutBox: {
@@ -28,12 +29,23 @@ export default function Sidebar(props) {
           {title}
         </Typography>
         <Typography>{description}</Typography>
+
+        <Rating profile={profile} user={user}/>
+        {profile.id === user.id? <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+            onClick={alert('asd')}
+          >
+            Изменить данные профиля
+          </Button> : ''}
         
-        <ChangeRating profile={profile} user={user}/>
 
       </Paper>
       <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
-        Контакты
+      Контакты
       </Typography>
       {social.map(network => (
         <Link display="block" variant="body1" href="#" key={network}>
