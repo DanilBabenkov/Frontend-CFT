@@ -15,11 +15,12 @@ import Start from './pages/Start';
 import Profile from './pages/Profile';
 import NewMyProfile from './pages/Profiles/NewMyProfile';
 import { ThemeProvider } from '@material-ui/core/styles';
-import { orange } from '@material-ui/core/colors';
 
 const theme = createMuiTheme({
   palette: {
-    primary: orange,
+    primary: {
+      main: '#ffb74d',
+    },
   }, 
 });
 

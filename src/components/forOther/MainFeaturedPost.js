@@ -7,6 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
 import Modal from '@material-ui/core/Modal';
 import SimpleModal from '@material-ui/core/Modal';
+import AccountIcon from '../../components/avatars/AccountIcon';
 
 function getModalStyle() {
   const top = 50;
@@ -77,18 +78,20 @@ export default function MainFeaturedPost(props) {
       {/* Increase the priority of the hero background image */}
       {<img style={{ display: 'none' }} src={post.image} alt={post.imageText} />}
       <div className={classes.overlay} />
-      <Grid container>
-        <Grid item md={6}>
+      <Grid container >
+        <Grid item md={6}  >
           <div className={classes.mainFeaturedPostContent}>
             <Typography component="h1" variant="h3" color="inherit" gutterBottom>
               {post.title}
             </Typography>
             <Typography variant="h5" color="inherit" paragraph>
               {post.description}
-            </Typography>
-            <Link variant="subtitle1" href="#" onClick={handleOpen}>
-              {post.linkText}
-            </Link>
+            </Typography>           
+          </div>
+        </Grid>
+          <Grid item md={6} >
+          <div className={classes.mainFeaturedPostContent}>
+          <AccountIcon />
           </div>
         </Grid>
       </Grid>

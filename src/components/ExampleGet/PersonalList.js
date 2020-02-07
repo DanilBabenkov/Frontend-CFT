@@ -10,6 +10,8 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grow } from '@material-ui/core';
+import AccountIcon from '../avatars/AccountIcon';
+
 const drawerWidth = 240;
 
 const classes = makeStyles(theme => ({
@@ -123,9 +125,9 @@ class PersonsList extends React.Component {
           <Card className={classes.card}>
             <CardMedia
               className={classes.cardMedia}
-              image="https://source.unsplash.com/random"
               title="Image title"
             />
+            <AccountIcon/>
             <CardContent className={classes.cardContent}>
               <Typography gutterBottom variant="h5" component="h2">
                 {person.firstName} <br />

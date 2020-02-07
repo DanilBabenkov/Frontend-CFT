@@ -8,47 +8,36 @@ import MainFeaturedPost from '../components/forOther/MainFeaturedPost';
 import FeaturedPost from '../components/forOther/FeaturedPost';
 import Sidebar from '../components/forOther/Sidebar';
 import SimpleExpansionPanel from '../components/forOther/Panels'
+import EmailIcon from '@material-ui/icons/Email';
 
 const mainFeaturedPost = {
   title: 'Кирилл Зырянов',
   description:
     "тут subjects",
-  image: 'https://source.unsplash.com/random',
-  imgText: 'main image description',
-  linkText: 'Редактировать'
 };
 
 const featuredPosts = [
   {
-    title: 'Проект №1',
+    title: 'Отзыв раз Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis egetLorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget',
     
-    description:
-      'Тут я делал тото',
-    image: 'https://source.unsplash.com/random',
-    imageText: 'Image Text',
   },
   {
-    title: 'Проект №2',
+    title: 'Отзыв раз Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuad leo lobortis eget',
     
-    description:
-      'А тут я делал тото',
-    image: 'https://source.unsplash.com/random',
-    imageText: 'Image Text',
   },
 ];
 
 
 const sidebar = {
-  title: 'Обо мне',
+  title: 'Стоимость занятия',
   description:
-    'Тут данные из эбаут',
-  archives: [
-    { title: 'сюда емаил' },
-  
-  ],
+    'Тут прайс $1000',
+
   social: [
+    { name: 'Email', icon: EmailIcon },
     { name: 'Twitter', icon: TwitterIcon },
-    { name: 'Facebook', icon: FacebookIcon },
+    { name: 'Почти ВК', icon: FacebookIcon },
+
   ],
 };
 
@@ -57,29 +46,29 @@ export default function OtherProfile(props) {
     <React.Fragment>
       <Container maxWidth="lg">
         <main>
-          <MainFeaturedPost post={mainFeaturedPost} />
-          <Grid container spacing={4} >
-            {featuredPosts.map(post => (
-              <FeaturedPost key={post.title} post={post} />
-            ))}
-          </Grid>
-          <Grid container spacing={3}>
-          <Grid item xs={8} >
-            <SimpleExpansionPanel />
-          </Grid>
-          <Grid item xs={4} >
-          <Sidebar
-              title={sidebar.title}
-              description={sidebar.description}
-              archives={sidebar.archives}
-              social={sidebar.social}
-            />  
+        <MainFeaturedPost post={mainFeaturedPost} />
+          
+          <Grid container spacing={3} >
+            <Grid spacing={3} container item xs={8} >
+              <Grid item>
+                <SimpleExpansionPanel />
+              </Grid>
+              <Grid item >
+                <Grid item container spacing={3} >
+                {featuredPosts.map(post => (
+                <FeaturedPost key={post.title} post={post} />
+                ))}
+              </Grid>
             </Grid>
-               
           </Grid>
-          
-            
-          
+            <Grid item xs={4} spacing={3}>
+            <Sidebar
+                title={sidebar.title}
+                description={sidebar.description}
+                social={sidebar.social}
+              />  
+            </Grid>
+          </Grid>
         </main>
       </Container>
     </React.Fragment>
