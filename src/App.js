@@ -17,6 +17,10 @@ import OtherProfile from './pages/Profiles/OtherProfile';
 
 
 function App() {
+  let token = localStorage.getItem('token');
+  let user_id = localStorage.getItem('user_id');
+  let authorised = Boolean(token && token.length && user_id && user_id.length);
+
   return (
     <Router>
       <Layout>
@@ -36,11 +40,8 @@ function App() {
           <Route path="/sign_out">
             <SignOut />
           </Route>
-          <Route path="/start">
-            <Start />
-          </Route>
           <Route path="/">
-            <Main />
+            {authorised? <Main />:<Start />}
           </Route>
 
         </Switch>
