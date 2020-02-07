@@ -6,8 +6,6 @@ import { fade, makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import MenuItem from '@material-ui/core/MenuItem';
 import {
-  Route, 
-  Switch, 
   Link
 } from 'react-router-dom';
 import Menu from '@material-ui/core/Menu';
@@ -110,7 +108,7 @@ export default function Header() {
   const UserMenu = (
     <div>
       <MenuItem component={Link} to='/profile'>Мой профиль</MenuItem>
-      <MenuItem component={Link} to='/'>Выйти</MenuItem>
+      <MenuItem component={Link} to='/sign_out'>Выйти</MenuItem>
     </div>
   ); 
 
@@ -121,6 +119,9 @@ export default function Header() {
     </div>
   ); 
 
+  let token = localStorage.getItem('token');
+  let user_id = localStorage.getItem('user_id');
+  let authorised = Boolean(token && token.length && user_id && user_id.length);
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -131,14 +132,7 @@ export default function Header() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <Switch>
-        <Route path="/profile">
-          {UserMenu}
-        </Route>
-        <Route>
-          {GuestMenu}
-        </Route>
-      </Switch>
+      {authorised? UserMenu : GuestMenu}
     </Menu>
   );
 
@@ -164,7 +158,7 @@ export default function Header() {
         </IconButton>
         <p>Профиль</p>
       </MenuItem>
-      <MenuItem component={Link} to="/">
+      <MenuItem component={Link} to="/sign_out">
         <IconButton
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"

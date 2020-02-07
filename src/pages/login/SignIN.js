@@ -1,5 +1,6 @@
 
 import React, {useState} from 'react';
+import {useHistory} from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -14,8 +15,11 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import axios from 'axios';
-
+import config from '../../config';
 import loginMock from '../../mock/login.json';
+
+axios.defaults.baseURL = config.backend_host;
+
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -39,6 +43,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function SignIn() {
   const classes = useStyles();
+  const history = useHistory();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -54,18 +59,19 @@ export default function SignIn() {
     })
     .then(function (response) {
       console.log(response);
-      return response;
+      return response.data;
     })
     .catch(function (error) {
       return loginMock.post.success;
     })
     .then(result => {
       console.log(result);
-      if(result.successful === true && result.token && result.user && result.user.id){
-        localStorage.setItem('token', result.token);
-        localStorage.setItem('user_id', result.user.id)
+      if(result.successful === true && result.uuid && result.user && result.user.id){
+        localStorage.setItem('token', result.uuid);
+        localStorage.setItem('user_id', result.user.id);
+        history.push('/');
       }else{
-        console.log("Trouble")
+        console.log("Trouble");
       }
     });
   };

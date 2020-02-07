@@ -13,9 +13,11 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import axios from 'axios';
-
+import config from '../../config';
+import {useHistory} from 'react-router-dom';
 import signUpMock from '../../mock/sign_up.json';
 
+axios.defaults.baseURL = config.backend_host;
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -44,10 +46,10 @@ export default function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isTeacher, setIsTeacher] = useState(false);
+  const history = useHistory();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log({firstName, lastName, email, password, isTeacher});
 
     axios.post('/user', {
       email,
@@ -56,23 +58,35 @@ export default function SignUp() {
       lastName,
       isTeacher
     })
-    .then(function (response) {
-      console.log('Response is:\n');
-      console.log(response);
-      return response;
+    .then(function (resp) {
+      console.log('Reg response is:', resp.data);
+
+      axios.post('/login', {
+        email,
+        password
+      })
+      .then(function (response) {
+        let result = response.data;
+        console.log('Login response is:', result);
+        
+        if(result.successful === true && result.uuid && result.user && result.user.id){
+          localStorage.setItem('token', result.uuid);
+          localStorage.setItem('user_id', result.user.id);
+          history.push('/');
+        }else{
+          console.log("Trouble");
+        }
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
     })
     .catch(function (error) {
-      return signUpMock.post.success;
-    })
-    .then(function(result){
-      if(result.successful){
-        console.log("Окей");
-        localStorage.setItem('token', result.token);
-        localStorage.setItem('user_id', result.user.id)
-      }else{
-        console.log("Trouble")
-      }
+      console.log('No response from remote: ', error);
+      return;
     });
+
+    
   };
 
   return (

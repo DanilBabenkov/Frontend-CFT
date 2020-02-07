@@ -1,10 +1,24 @@
 {
-    "success":
-    {
-        "successful" : true,
-        "token" : "u123kf"
-    },
-    "error": {
-        "successful" : false
+    "post":{
+        "success":
+        {
+            "id": 1,
+            "email": "email@mail.ru",	
+            "firstName": "Иван",
+            "lastName": "Иванов",
+            "paronym": "Иванович",
+            "faculty": "Факультет систем управления",
+            "course": 3,
+            "subjects" : ["Матан", "Алгебра", "Программирование", "Философия"],
+            "degree": "бакалавр",
+            "about": "Самый крутой репетитор в мире :)",
+            "isTeacher" : true,
+            "price" : 1000,
+            "photo": null
+        },
+        "error": {
+            "successful" : false
+        }
     }
+   
 }
