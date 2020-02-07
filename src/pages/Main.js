@@ -110,8 +110,7 @@ const useStyles = makeStyles(theme => ({
 
 
 
-export default function MiniDrawer() {
-
+export default function Main() {
   const classes = useStyles();
   // const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9,10];
   const filters = [0,1,2,3];
@@ -125,7 +124,7 @@ export default function MiniDrawer() {
           <Container className={classes.cardGrid} maxWidth="md">
           <Grid container spacing={1}>
             {filters.map(filter => (
-              <Grid item xs={12} sm={6} md={3}>
+              <Grid item key={filter} xs={12} sm={6} md={3}>
                 <CheckboxesTags filter={filter}/>
               </Grid>
             ))}
