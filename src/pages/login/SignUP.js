@@ -13,11 +13,11 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import axios from 'axios';
-import config from '../../config';
+import {DEFAULT_BACKEND_HOST}  from '../../config';
 import {useHistory} from 'react-router-dom';
 import signUpMock from '../../mock/sign_up.json';
 
-axios.defaults.baseURL = config.backend_host;
+axios.defaults.baseURL = DEFAULT_BACKEND_HOST;
 
 const useStyles = makeStyles(theme => ({
   paper: {

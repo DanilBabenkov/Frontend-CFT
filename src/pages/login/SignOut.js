@@ -1,9 +1,9 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
 import axios from 'axios';
-import config from '../../config';
+import {DEFAULT_BACKEND_HOST} from '../../config';
 
-axios.defaults.baseURL = config.backend_host;
+axios.defaults.baseURL = DEFAULT_BACKEND_HOST;
 
 export default function SignOut() {
   let token = localStorage.getItem('token');

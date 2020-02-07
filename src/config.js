@@ -1,4 +1,19 @@
-export default {
-    //backend_host: 'http://192.168.1.68:8585'
-    backend_host: 'http://repetito.herokuapp.com'
-}
+const DEFAULT_EMPTY_USER = { 
+  "id": -1,
+  "firstName": "",
+  "lastName": "",
+  "paronym": "",
+  "about": "",
+  "isTeacher": false,
+  "subjects": [],
+  "price": 0,
+  "avgMark": 0,
+  "photo" : null
+};
+
+const DEFAULT_BACKEND_HOST = 'http://repetito.herokuapp.com';
+
+export {
+  DEFAULT_BACKEND_HOST,
+  DEFAULT_EMPTY_USER
+};
