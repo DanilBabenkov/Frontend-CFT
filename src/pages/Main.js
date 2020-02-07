@@ -3,13 +3,20 @@ import { makeStyles} from '@material-ui/core/styles';
 import {Link} from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
+
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
+import axios from 'axios';
+/* eslint-disable no-use-before-define */
+import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
+import CheckboxesTags from '../components/Filters/index'
+import PersonsList from '../components/ExampleGet/PersonalList'
+import PersonsInput from '../components/ExamplePost/PersonalInput'
+import { render } from '@testing-library/react';
 const drawerWidth = 240;
+const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
+const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
 const useStyles = makeStyles(theme => ({
   icon: {
@@ -104,45 +111,40 @@ const useStyles = makeStyles(theme => ({
 
 
 export default function MiniDrawer() {
+
   const classes = useStyles();
-  const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9,10];
-  return (
-    <div className={classes.root}>
-      <main>
-        {/* Hero unit */}
-        
-        
-        <Container className={classes.cardGrid} maxWidth="md">
-          {/* End hero unit */}
-          <Grid container spacing={4}>
-            {cards.map(card => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
-                <Card className={classes.card}>
-                  <CardMedia
-                    className={classes.cardMedia}
-                    image="https://source.unsplash.com/random"
-                    title="Image title"
-                  />
-                  <CardContent className={classes.cardContent}>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      Кирилл
-                    </Typography>
-                    <Typography>
-                      Умею все. и БЛАБЛАБЛАБЛАБЛАБЛА БЛАБЛАБЛА БЛАБЛАБЛА БЛАБЛАБЛАБЛА БЛА
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button component={Link} to="/profile" size="small" color="primary">
-                    Смотреть
-                    </Button>
-                    
-                  </CardActions>
-                </Card>
+  // const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9,10];
+  const filters = [0,1,2,3];
+
+    return (
+      <div className={classes.root}>
+        <main>
+          {/* Hero unit */}
+          {/* <PersonsInput/> */}
+          
+          <Container className={classes.cardGrid} maxWidth="md">
+          <Grid container spacing={1}>
+            {filters.map(filter => (
+              <Grid item xs={12} sm={6} md={3}>
+                <CheckboxesTags filter={filter}/>
               </Grid>
             ))}
-          </Grid>
-        </Container>
-      </main>
-    </div>
-  );
+            </Grid>
+            
+            {/* End hero unit */}
+            <Grid container spacing={4}>
+              <PersonsList/>
+            </Grid>
+          </Container>
+        </main>
+      </div>
+    );
 }
+
+const top100Films = [
+  { title: 'onlyTeacher', year: 1994 },
+  { title: 'faculty', year: 1972 },
+  { title: 'course: Part II', year: 1974 },
+  { title: 'subject', year: 2008 },
+  { title: 'degree', year: 2008 },
+];
