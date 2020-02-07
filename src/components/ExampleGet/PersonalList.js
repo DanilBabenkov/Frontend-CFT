@@ -135,7 +135,10 @@ class PersonsList extends React.Component {
                       {person.lastName}
                       </Typography>
                       <Typography>
-                        Умею все. и БЛАБЛАБЛАБЛАБЛАБЛА БЛАБЛАБЛА БЛАБЛАБЛА БЛАБЛАБЛАБЛА БЛА
+                        {'Средняя оценка: '+person.avgMark+'\n'}
+                      </Typography>
+                      <Typography>
+                        {'Цена занятия: '+person.price+'\n'}
                       </Typography>
                     </CardContent>
                     <CardActions>
