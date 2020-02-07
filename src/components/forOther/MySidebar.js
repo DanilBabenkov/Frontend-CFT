@@ -5,7 +5,9 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
-import ChangeRating from '../OllRaitings/ChangeRating'
+import ReadRating from '../OllRaitings/ReadRating'
+import Button from '@material-ui/core/Button';
+
 
 const useStyles = makeStyles(theme => ({
   sidebarAboutBox: {
@@ -17,20 +19,31 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function Sidebar(props) {
+export default function MySidebar(props) {
   const classes = useStyles();
   const { archives, description, social, title } = props;
 
   return (
     <Grid item xs={12} >
       <Paper elevation={0} className={classes.sidebarAboutBox}>
+      
         <Typography variant="h6" gutterBottom>
           {title}
+
         </Typography>
         <Typography>{description}</Typography>
-        
-        <ChangeRating/>
-        
+
+        <ReadRating/>
+        <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            Изменить данные профиля
+          </Button>
+
       </Paper>
       <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
         Archives
@@ -57,7 +70,7 @@ export default function Sidebar(props) {
   );
 }
 
-Sidebar.propTypes = {
+MySidebar.propTypes = {
   archives: PropTypes.array,
   description: PropTypes.string,
   social: PropTypes.array,

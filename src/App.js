@@ -13,6 +13,8 @@ import SignOut from './pages/login/SignOut';
 import Main from './pages/Main';
 import Start from './pages/Start';
 import OtherProfile from './pages/Profiles/OtherProfile';
+import NewMyProfile from './pages/Profiles/NewMyProfile';
+
 
 
 
@@ -21,11 +23,11 @@ function App() {
     <Router>
       <Layout>
         <Switch>
-          <Route path="/profile">
-            <MyProfile />
-          </Route>
           <Route path="/other_profile">
             <OtherProfile />
+          </Route>
+          <Route path="/profile">
+            <NewMyProfile />
           </Route>
           <Route path="/sign_in">
             <SignIn />

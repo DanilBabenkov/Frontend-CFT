@@ -139,7 +139,7 @@ class PersonsList extends React.Component {
                       </Typography>
                     </CardContent>
                     <CardActions>
-                      <Button component={Link} to="/profile" size="small" color="primary">
+                      <Button component={Link} to="/other_profile" size="small" color="primary">
                       Смотреть
                       </Button>
                       
