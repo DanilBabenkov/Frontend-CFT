@@ -4,9 +4,27 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
+import axios from 'axios';
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
+
+const array = [ 
+  [
+      { title: '1' },
+      { title: '2' },
+      { title: '3'},
+  ], 
+  [
+      { title: 'Бакалавр' },
+      { title: 'Магистр' },
+      { title: 'Аспирант'},
+  ], [
+      { title: 'ФИНФ' },
+      { title: 'ФФК' },
+      { title: 'РФФ'},
+  ]
+]
 
 class CheckboxesTags extends React.Component {
     
@@ -15,15 +33,22 @@ class CheckboxesTags extends React.Component {
     //     this.state = {checked: false , tags: []}
     //     this.onTagsChanged = this.onTagsChanged.bind(this);
     // }
-    
+
 
     render() {
-        const {filter} = this.props;
+        const {filter, subject} = this.props;
+        const a = [];
+        for(let i = 0; i < subject.length; i++){
+          a.push({title: subject[i].name});
+        }
+      
+        const arrayFilter = [...[a], ...array];
+      
         return (
             <Autocomplete
               multiple
               id="checkboxes-tags-demo"
-              options={array[filter]}
+              options={arrayFilter[filter]}
               disableCloseOnSelect
               getOptionLabel={option => option.title}
               renderOption={(option, { selected }) => (
@@ -55,27 +80,7 @@ class CheckboxesTags extends React.Component {
 
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
 
-const array = [ 
-    [
-        { title: 'Математика' },
-        { title: 'История' },
-        { title: 'Программирование'},
-], 
-[
-    { title: '1' },
-    { title: '2' },
-    { title: '3'},
-], 
-[
-    { title: 'Бакалавр' },
-    { title: 'Магистр' },
-    { title: 'Аспирант'},
-], [
-    { title: 'ФИНФ' },
-    { title: 'ФФК' },
-    { title: 'РФФ'},
-]
-  ]
+
 const course = [
     { title: '1' },
     { title: '2' },

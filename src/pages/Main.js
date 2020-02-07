@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { makeStyles} from '@material-ui/core/styles';
 import {Link} from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
@@ -115,6 +115,26 @@ export default function MiniDrawer() {
   const classes = useStyles();
   // const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9,10];
   const filters = [0,1,2,3];
+  const [subjects, setSubjects] = useState([])
+
+
+  useEffect(() => {
+    axios.get('http://repetito.herokuapp.com/subjects')
+      .then(res => {
+        console.log('res', res.data.filter(name => name.name));
+        setSubjects( res.data );
+      })
+  }, [])
+
+  // componentDidMount() 
+  // {
+  //   axios.get('http://repetito.herokuapp.com/subjects')
+  //     .then(res => {
+  //       console.log(res);
+  //       this.setState({ subjects: res.data });
+  //     })
+
+  // }
 
     return (
       <div className={classes.root}>
@@ -126,11 +146,13 @@ export default function MiniDrawer() {
           <Grid container spacing={1}>
             {filters.map(filter => (
               <Grid item xs={12} sm={6} md={3}>
-                <CheckboxesTags filter={filter}/>
+                <CheckboxesTags filter={filter} subject={subjects} />
               </Grid>
             ))}
             </Grid>
-
+            <Button variant="contained" color="primary" style={{ marginBotton: 30}}>
+              Добавить публикацию
+            </Button>
             {/* End hero unit */}
             <Grid container spacing={4}>
               <PersonsList/>
