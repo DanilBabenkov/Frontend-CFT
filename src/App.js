@@ -23,6 +23,12 @@ function App() {
       <Layout>
         <Switch>
           <Route path="/user/:id" component={Profile} />
+          <Route path="/other_profile">
+            <OtherProfile />
+          </Route>
+          <Route path="/profile">
+            <NewMyProfile />
+          </Route>
           <Route path="/sign_in">
             <SignIn />
           </Route>

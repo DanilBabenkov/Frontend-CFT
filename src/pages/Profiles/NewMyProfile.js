@@ -4,23 +4,25 @@ import Container from '@material-ui/core/Container';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
-import MainFeaturedPost from '../components/forOther/MainFeaturedPost';
-import FeaturedPost from '../components/forOther/FeaturedPost';
-import Sidebar from '../components/forOther/Sidebar';
-import SimpleExpansionPanel from '../components/forOther/Panels'
+import MainFeaturedPost from '../../components/forOther/MainFeaturedPost';
+import FeaturedPost from '../../components/forOther/FeaturedPost';
+import MySidebar from '../../components/forOther/MySidebar';
+import SimpleExpansionPanel from '../../components/forOther/Panels'
+
+
+
 
 const mainFeaturedPost = {
-  title: 'Кирилл Зырянов',
+  title: 'Мое имя',
   description:
     "тут subjects",
   image: 'https://source.unsplash.com/random',
   imgText: 'main image description',
-  linkText: 'Редактировать'
 };
 
 const featuredPosts = [
   {
-    title: 'Проект №1',
+    title: 'Красивая кнопка раз',
     
     description:
       'Тут я делал тото',
@@ -28,10 +30,10 @@ const featuredPosts = [
     imageText: 'Image Text',
   },
   {
-    title: 'Проект №2',
+    title: 'Красивая кнопка Два',
     
     description:
-      'А тут я делал тото',
+      'Придумаем чтото',
     image: 'https://source.unsplash.com/random',
     imageText: 'Image Text',
   },
@@ -41,9 +43,9 @@ const featuredPosts = [
 const sidebar = {
   title: 'Обо мне',
   description:
-    'Тут данные из эбаут',
+    'Тут данные из эбаут обо мне',
   archives: [
-    { title: 'сюда емаил' },
+    { title: 'сюда емаил обо мне' },
   
   ],
   social: [
@@ -52,7 +54,7 @@ const sidebar = {
   ],
 };
 
-export default function OtherProfile(props) {
+export default function NewMyProfile() {
   return (
     <React.Fragment>
       <Container maxWidth="lg">
@@ -68,7 +70,7 @@ export default function OtherProfile(props) {
             <SimpleExpansionPanel />
           </Grid>
           <Grid item xs={4} >
-          <Sidebar
+          <MySidebar
               title={sidebar.title}
               description={sidebar.description}
               archives={sidebar.archives}
