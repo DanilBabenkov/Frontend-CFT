@@ -44,6 +44,12 @@ function App() {
             <Route path="/sign_out">
               <SignOut />
             </Route>
+            <Route path="/feed">
+              <Main />
+            </Route>
+            <Route path="/start">
+              <Start />
+            </Route>
             <Route path="/user/:id" component={Profile} />
             <Route path="/profile">
               <Profile/>

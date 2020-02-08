@@ -72,7 +72,7 @@ export default function SignUp() {
         if(result.successful === true && result.token && result.user && result.user.id){
           localStorage.setItem('token', result.token);
           localStorage.setItem('user_id', result.user.id);
-          history.push('/');
+          history.push('/feed');
         }else{
           console.log("Trouble");
         }

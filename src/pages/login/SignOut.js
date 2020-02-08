@@ -16,6 +16,6 @@ export default function SignOut() {
   
   localStorage.removeItem('token');
   return (
-    <Redirect to="/" />
+    <Redirect to="/start" />
   );
 }
