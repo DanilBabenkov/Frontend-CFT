@@ -43,8 +43,8 @@ class CheckboxesTags extends React.Component {
                 <TextField
                   {...params}
                   variant="outlined"
-                  label="Checkboxes"
-                  placeholder="Favorites"
+                  label="Фильтр"
+                  placeholder=""
                   fullWidth
                 />
               )}

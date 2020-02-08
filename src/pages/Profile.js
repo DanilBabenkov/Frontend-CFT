@@ -102,7 +102,7 @@ export default function Profile(props) {
   });
 
   const [sidebar, setSidebar] = useState({
-    title: 'Обо мне',
+    title: 'Стоимость занятия',
     description:
       'Тут данные из эбаут обо мне',
     social: [
@@ -148,7 +148,7 @@ export default function Profile(props) {
 
   useEffect(() => {
     const newSidebar = Object.assign({}, sidebar);
-    newSidebar.description = profile.about;
+    newSidebar.description = profile.price + " Рублей" ;
     newSidebar.social[0].name = profile.email;
     setSidebar(newSidebar);
 
@@ -166,7 +166,7 @@ export default function Profile(props) {
           <Grid container spacing={3} >
             <Grid spacing={3} container item xs={8} >
               <Grid item>
-                <SimpleExpansionPanel />
+                <SimpleExpansionPanel profile={profile}/>
               </Grid>
               <Grid item >
                 <Grid item container spacing={3} >
@@ -185,6 +185,7 @@ export default function Profile(props) {
                 user={user}
                 profile={profile}
                 handleOpen={handleOpen}
+
               />
             </Grid>
 
@@ -198,7 +199,7 @@ export default function Profile(props) {
             onClose={handleClose}
           ><div style={modalStyle} className={classes.paper}>
               <ProfileEdit handleClose={handleClose} />
-              <SimpleModal />
+              <SimpleModal  />
             </div>
           </Modal>
 

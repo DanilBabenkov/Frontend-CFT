@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function SimpleExpansionPanel() {
+export default function SimpleExpansionPanel(props) {
   const classes = useStyles();
 
   return (
@@ -32,7 +32,7 @@ export default function SimpleExpansionPanel() {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
-            Тут пока пусто. 
+            {props.profile.course} курс {props.profile.degree},  {props.profile.faculty}
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
@@ -47,7 +47,7 @@ export default function SimpleExpansionPanel() {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
-          Тут пока пусто.
+          {props.profile.about}
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
