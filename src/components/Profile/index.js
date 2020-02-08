@@ -115,6 +115,8 @@ class SkillTags extends React.Component {
       newUser[key] = value;
       this.setState({user: newUser})
       this.props.setNewUser(newUser);
+      
+      console.log(newUser)
     }
 
     render() {
@@ -125,15 +127,15 @@ class SkillTags extends React.Component {
                 control={
                   <Checkbox
                     color="secondary" 
-                    checked={Boolean(this.state.user.teacher)}
-                    onChange={e => {this.updateUser(Boolean(e.target.checked), 'teacher')}}
-                    name="teacher" 
+                    checked={Boolean(this.state.user.isTeacher)}
+                    onChange={e => {this.updateUser(Boolean(e.target.checked), 'isTeacher')}}
+                    name="isTeacher" 
                   />
                 }
                 label="Я преподаватель"
               />
           </Grid>
-          {this.state.user.teacher ?
+          {this.state.user.isTeacher ?
             <Grid  item xs={12}>
               <TextField
                 id="price"

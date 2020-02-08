@@ -45,7 +45,7 @@ export default function SignUp() {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [teacher, setTeacher] = useState(false);
+  const [isTeacher, setIsTeacher] = useState(false);
   const history = useHistory();
 
   const handleSubmit = (event) => {
@@ -56,7 +56,7 @@ export default function SignUp() {
       password,
       firstName,
       lastName,
-      teacher
+      isTeacher
     })
     .then(function (resp) {
       console.log('Reg response is:', resp.data);
@@ -155,7 +155,7 @@ export default function SignUp() {
               <FormControlLabel
                 control={<Checkbox value="allowExtraEmails" color="primary" />}
                 label="Хочу преподавать"
-                onChange={(e) => {setTeacher(e.target.value)}}
+                onChange={(e) => {setIsTeacher(e.target.value)}}
               />
             </Grid>
           </Grid>

@@ -4,7 +4,7 @@ const DEFAULT_EMPTY_USER = {
   "lastName": "",
   "paronym": "",
   "about": "",
-  "teacher": false,
+  "isTeacher": false,
   "subjects": [],
   "price": 0,
   "avgMark": 0,

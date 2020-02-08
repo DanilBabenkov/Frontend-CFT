@@ -114,7 +114,7 @@ class PersonsList extends React.Component {
       .then(res => {
         console.log(res);
         let users = res.data;
-        this.setState({ persons: users/*.filter(user=> user.teacher) */});
+        this.setState({ persons: users.filter(user=> user.teacher) });
       })
   }
 
