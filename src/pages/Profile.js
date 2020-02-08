@@ -11,7 +11,7 @@ import SimpleExpansionPanel from '../components/forOther/Panels';
 import Sidebar from '../components/forOther/Sidebar';
 import { DEFAULT_EMPTY_USER } from '../config.js';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, Redirect } from 'react-router-dom';
 import Modal from '@material-ui/core/Modal';
 import SimpleModal from '@material-ui/core/Modal';
 import ProfileEdit from '../components/Profile/edit'
@@ -89,6 +89,9 @@ export default function Profile(props) {
   const [user, setUser] = useState(DEFAULT_EMPTY_USER);
   const [profile, setProfile] = useState(DEFAULT_EMPTY_USER);
 
+  const user_id = localStorage.getItem('user_id');
+  const token = localStorage.getItem('token');
+  const auth = user_id && user_id.length && token && token.length;
 
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
@@ -111,6 +114,8 @@ export default function Profile(props) {
     imgText: 'main image description',
   });
 
+  
+
   const [sidebar, setSidebar] = useState({
     title: 'Обо мне',
     description:
@@ -123,8 +128,6 @@ export default function Profile(props) {
   });
 
   useEffect(() => {
-    const user_id = localStorage.getItem('user_id');
-    const token = localStorage.getItem('token');
     axios.defaults.headers.common['Authorization'] = token;
 
     axios.get('/user/' + user_id, {})
@@ -164,9 +167,14 @@ export default function Profile(props) {
 
     const newMainFeaturedPost = Object.assign({}, mainFeaturedPost);
     newMainFeaturedPost.title = profile.firstName + " " + profile.lastName;
-    newMainFeaturedPost.description = profile.subjects.join(' ');
+    console.log(profile.subjects)
+    newMainFeaturedPost.description = profile.subjects.map(subject => subject.name).join(' ');
     setMainFeaturedPost(newMainFeaturedPost);
   }, [profile])
+
+  
+  if(!auth)
+    return <Redirect to="/" />
 
   return (
     <>
