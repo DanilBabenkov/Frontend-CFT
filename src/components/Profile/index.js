@@ -52,6 +52,44 @@ function MainInfo(props) {
             autoComplete="lname"
           />
         </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="faculty"
+            name="faculty"
+            label="Факультет"
+            onChange={val=> updateUser(val.target.value, "faculty")}
+            value={user.faculty}
+            fullWidth
+            
+            
+            autoComplete="22name"
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="course"
+            name="course"
+            label="Курс"
+            fullWidth
+            
+            onChange={val=> updateUser(val.target.value, "course")}
+            value={user.course}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            required
+            id="degree"
+            name="degree"
+            label="Уровень"
+            fullWidth
+            onChange={val=> updateUser(val.target.value, "degree")}
+            value={user.degree}
+            multiline
+          />
+        </Grid>
         <Grid item xs={12}>
           <TextField
             required
