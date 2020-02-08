@@ -110,7 +110,7 @@ class PersonsList extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('http://repetito.herokuapp.com/user')
+    axios.get('http://repetito.herokuapp.com/user?limit=50')
       .then(res => {
         console.log(res);
         let users = res.data;
@@ -152,7 +152,7 @@ class PersonsList extends React.Component {
                   Смотреть
                 </Button>
                 <Button size="small" disabled={true}>
-                {'Средняя оценка: ' + person.avgMark}
+                {'Средняя оценка: ' + (Math.round(parseFloat(person.avgMark) * 10) / 10)}
                 </Button>
               </Grid>
             </CardActions>
