@@ -3,6 +3,7 @@ import { makeStyles} from '@material-ui/core/styles';
 import {Link} from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+import InputText from '../components/inputText'
 import {
   BrowserRouter as Router,
   Route,
@@ -130,6 +131,7 @@ export default function MiniDrawer() {
       })
   }, [])
 
+
   // componentDidMount() 
   // {
   //   axios.get('http://repetito.herokuapp.com/subjects')
@@ -154,6 +156,7 @@ export default function MiniDrawer() {
               </Grid>
             ))}
             </Grid>
+            <InputText/>
             <Button 
                 variant="contained"
                 color="primary"
